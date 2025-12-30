@@ -329,7 +329,8 @@ body {
   gap: 1rem;
 }
 
-.portfolio-image-wrapper {
+.portfolio-image-wrapper,
+.portfolio-video-wrapper {
   width: 100%;
   overflow: hidden;
   border-radius: 12px;
@@ -338,19 +339,26 @@ body {
   transition: all 0.4s ease;
 }
 
-.portfolio-image-wrapper:hover {
+.portfolio-image-wrapper:hover,
+.portfolio-video-wrapper:hover {
   border-color: var(--glass-hover-border);
   box-shadow: 0 0 40px var(--glow-color);
 }
 
-.portfolio-image {
+.portfolio-image,
+.portfolio-video {
   width: 100%;
   height: auto;
   display: block;
   transition: transform 0.4s ease, opacity 0.3s ease;
 }
 
-.portfolio-item:hover .portfolio-image {
+.portfolio-video {
+  border-radius: 12px;
+}
+
+.portfolio-item:hover .portfolio-image,
+.portfolio-item:hover .portfolio-video {
   transform: scale(1.02);
 }
 
