@@ -249,45 +249,48 @@ body {
   }
 }
 
-/* Positioning ambient videos to avoid text overlap */
+/* Positioning ambient videos - larger and better placed */
 .ambient-video-1 {
-  top: 5%;
-  left: 2%;
-  width: 180px;
-  height: 180px;
+  top: 20%;
+  left: 5%;
+  width: 280px;
+  height: 280px;
   animation-delay: 0.5s;
 }
 
 .ambient-video-2 {
-  bottom: 5%;
-  right: 2%;
-  width: 160px;
-  height: 160px;
+  bottom: 15%;
+  left: 8%;
+  width: 260px;
+  height: 260px;
   animation-delay: 1s;
 }
 
 .ambient-video-3 {
-  top: 5%;
-  right: 2%;
-  width: 200px;
-  height: 200px;
+  top: 15%;
+  right: 5%;
+  width: 300px;
+  height: 300px;
   animation-delay: 1.5s;
 }
 
 @media (max-width: 1200px) {
   .ambient-video-1 {
-    width: 140px;
-    height: 140px;
+    width: 200px;
+    height: 200px;
+    left: 3%;
   }
   
   .ambient-video-2 {
-    width: 120px;
-    height: 120px;
+    width: 180px;
+    height: 180px;
+    left: 5%;
   }
   
   .ambient-video-3 {
-    width: 150px;
-    height: 150px;
+    width: 220px;
+    height: 220px;
+    right: 3%;
   }
 }
 
