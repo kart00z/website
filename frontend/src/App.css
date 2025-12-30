@@ -182,6 +182,106 @@ body {
   line-height: 1.2;
   margin-bottom: 3rem;
   letter-spacing: -0.02em;
+  position: relative;
+  z-index: 2;
+}
+
+/* Ambient Background Videos on Intro */
+.ambient-videos {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.ambient-video {
+  position: absolute;
+  border-radius: 16px;
+  overflow: hidden;
+  opacity: 0;
+  animation: ambientFadeIn 2s ease-in-out forwards;
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 0 30px var(--glow-color);
+}
+
+.ambient-video video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.3;
+  animation: ambientPulse 8s ease-in-out infinite;
+}
+
+@keyframes ambientFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes ambientPulse {
+  0%, 100% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+/* Positioning ambient videos around the content */
+.ambient-video-1 {
+  top: 10%;
+  right: 5%;
+  width: 200px;
+  height: 200px;
+  animation-delay: 0.5s;
+}
+
+.ambient-video-2 {
+  bottom: 15%;
+  right: 10%;
+  width: 180px;
+  height: 180px;
+  animation-delay: 1s;
+}
+
+.ambient-video-3 {
+  top: 50%;
+  right: 0%;
+  width: 220px;
+  height: 220px;
+  animation-delay: 1.5s;
+}
+
+@media (max-width: 1024px) {
+  .ambient-video-1 {
+    width: 150px;
+    height: 150px;
+  }
+  
+  .ambient-video-2 {
+    width: 130px;
+    height: 130px;
+  }
+  
+  .ambient-video-3 {
+    width: 160px;
+    height: 160px;
+  }
+}
+
+@media (max-width: 768px) {
+  .ambient-videos {
+    display: none;
+  }
 }
 
 .text-intro {
