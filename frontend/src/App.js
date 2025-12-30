@@ -5,6 +5,7 @@ import { BrowserRouter } from "react-router-dom";
 function App() {
   const [scrollRotation, setScrollRotation] = useState(0);
   const [activeSection, setActiveSection] = useState('intro');
+  const [theme, setTheme] = useState('dark');
 
   useEffect(() => {
     const handleScroll = () => {
@@ -31,6 +32,14 @@ function App() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  useEffect(() => {
+    document.documentElement.setAttribute('data-theme', theme);
+  }, [theme]);
+
+  const toggleTheme = () => {
+    setTheme(prev => prev === 'dark' ? 'light' : 'dark');
+  };
+
   const scrollToSection = (sectionId) => {
     const element = document.getElementById(sectionId);
     if (element) {
@@ -41,26 +50,29 @@ function App() {
   return (
     <BrowserRouter>
       <div className="App">
-        {/* Rotating Cog Icon */}
-        <div className="fixed top-8 left-8 z-50">
-          <svg
-            width="48"
-            height="48"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="1.5"
-            className="text-white/70 transition-transform duration-100 ease-out"
-            style={{ transform: `rotate(${scrollRotation}deg)` }}
-          >
-            <circle cx="12" cy="12" r="3" />
-            <path d="M12 1v6m0 6v6M1 12h6m6 0h6" />
-            <path d="M4.2 4.2l4.3 4.3m5 5l4.3 4.3M4.2 19.8l4.3-4.3m5-5l4.3-4.3" />
-          </svg>
-        </div>
+        {/* Theme Toggle - Sun/Moon */}
+        <button 
+          className="theme-toggle" 
+          onClick={toggleTheme}
+          aria-label="Toggle theme"
+          data-testid="theme-toggle"
+        >
+          {theme === 'dark' ? (
+            // Moon icon for dark mode
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+            </svg>
+          ) : (
+            // Sun icon for light mode
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+              <circle cx="12" cy="12" r="4" />
+              <path d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32l1.41 1.41M2 12h2m16 0h2M4.93 19.07l1.41-1.41m11.32-11.32l1.41-1.41" />
+            </svg>
+          )}
+        </button>
 
         {/* Glass Navigation */}
-        <nav className="glass-nav fixed top-8 right-8 z-50" data-testid="main-navigation">
+        <nav className="glass-nav" data-testid="main-navigation">
           <button
             onClick={() => scrollToSection('intro')}
             className={`nav-link ${activeSection === 'intro' ? 'active' : ''}`}
@@ -111,7 +123,7 @@ function App() {
                 </p>
                 <p className="statement fade-in-3">
                   i think ai can be powerful{' '}
-                  <span className="highlight-tool glass-element" data-testid="tool-highlight">tool</span>.
+                  <span className="highlight-tool" data-testid="tool-highlight">tool</span>.
                 </p>
                 <p className="statement fade-in-4">
                   i create without limits.
@@ -189,7 +201,7 @@ function App() {
                 <div className="contact-links">
                   <a
                     href="mailto:kartikye@example.com"
-                    className="contact-link glass-element"
+                    className="contact-link"
                     data-testid="contact-email"
                     target="_blank"
                     rel="noopener noreferrer"
@@ -203,7 +215,7 @@ function App() {
                   
                   <a
                     href="https://www.linkedin.com/in/kartikye-kashyap-35930527b/"
-                    className="contact-link glass-element"
+                    className="contact-link"
                     data-testid="contact-linkedin"
                     target="_blank"
                     rel="noopener noreferrer"
