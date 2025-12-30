@@ -108,6 +108,26 @@ function App() {
           <div className="content-wrapper">
             <div className="vertical-line"></div>
             <div className="main-content">
+              
+              {/* Ambient Background Videos */}
+              <div className="ambient-videos">
+                <div className="ambient-video ambient-video-1">
+                  <video autoPlay loop muted playsInline preload="auto">
+                    <source src="https://customer-assets.emergentagent.com/job_f89c7579-45ce-4797-86a4-864b9c1026f7/artifacts/luskimt2_copy_3F55AC6B-5FBA-409A-BEA5-D4925190E716.MOV" type="video/quicktime" />
+                  </video>
+                </div>
+                <div className="ambient-video ambient-video-2">
+                  <video autoPlay loop muted playsInline preload="auto">
+                    <source src="https://customer-assets.emergentagent.com/job_f89c7579-45ce-4797-86a4-864b9c1026f7/artifacts/wjml9oab_copy_FE7C6C77-06D3-4BBB-A7F1-05114D95309A.MOV" type="video/quicktime" />
+                  </video>
+                </div>
+                <div className="ambient-video ambient-video-3">
+                  <video autoPlay loop muted playsInline preload="auto">
+                    <source src="https://customer-assets.emergentagent.com/job_f89c7579-45ce-4797-86a4-864b9c1026f7/artifacts/wfu9u7ya_copy_654B0D2E-9F53-480A-A6AA-B05D56963BD9.MOV" type="video/quicktime" />
+                  </video>
+                </div>
+              </div>
+
               <h1 className="hero-title" data-testid="hero-title">
                 <span className="text-intro">i am</span>{' '}
                 <span className="name-primary">kartikye</span>{' '}
