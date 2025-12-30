@@ -81,18 +81,18 @@ function App() {
             01 INTRO
           </button>
           <button
-            onClick={() => scrollToSection('vita')}
-            className={`nav-link ${activeSection === 'vita' ? 'active' : ''}`}
-            data-testid="nav-vita"
-          >
-            02 VITA
-          </button>
-          <button
             onClick={() => scrollToSection('portfolio')}
             className={`nav-link ${activeSection === 'portfolio' ? 'active' : ''}`}
             data-testid="nav-portfolio"
           >
-            03 PORTFOLIO
+            02 PORTFOLIO
+          </button>
+          <button
+            onClick={() => scrollToSection('vita')}
+            className={`nav-link ${activeSection === 'vita' ? 'active' : ''}`}
+            data-testid="nav-vita"
+          >
+            03 VITA
           </button>
           <button
             onClick={() => scrollToSection('contact')}
