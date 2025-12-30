@@ -33,6 +33,32 @@ function App() {
   }, []);
 
   useEffect(() => {
+    // Rotate video gallery every 4 seconds
+    const rotateGallery = () => {
+      const videos = document.querySelectorAll('.gallery-video');
+      let activeIndex = 0;
+      
+      videos.forEach((video, index) => {
+        if (video.classList.contains('active')) {
+          activeIndex = index;
+        }
+      });
+
+      const nextIndex = (activeIndex + 1) % videos.length;
+      
+      videos.forEach((video, index) => {
+        video.classList.remove('active');
+        if (index === nextIndex) {
+          video.classList.add('active');
+        }
+      });
+    };
+
+    const interval = setInterval(rotateGallery, 4000);
+    return () => clearInterval(interval);
+  }, []);
+
+  useEffect(() => {
     document.documentElement.setAttribute('data-theme', theme);
   }, [theme]);
 
