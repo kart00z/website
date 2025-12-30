@@ -133,7 +133,139 @@ function App() {
           </div>
         </section>
 
-        {/* VITA Section */}
+        {/* PORTFOLIO Section - Moved Up */}
+        <section id="portfolio" className="section" data-testid="portfolio-section">
+          <div className="content-wrapper">
+            <div className="vertical-line"></div>
+            <div className="main-content">
+              <h2 className="section-title" data-testid="portfolio-title">portfolio</h2>
+              
+              <div className="portfolio-grid">
+                <div className="portfolio-item" data-testid="portfolio-item-1">
+                  <div className="portfolio-image-wrapper">
+                    <img 
+                      src="https://customer-assets.emergentagent.com/job_f89c7579-45ce-4797-86a4-864b9c1026f7/artifacts/m8evkh55_EgxieYPDJCs.webp"
+                      alt="Runway GEN:48 Aleph Edition - People's Choice Winner"
+                      className="portfolio-image"
+                    />
+                  </div>
+                  <div className="portfolio-info">
+                    <h3 className="portfolio-project-title">Runway GEN:48 Aleph Edition</h3>
+                    <p className="portfolio-project-role">People's Choice Winner</p>
+                  </div>
+                </div>
+
+                <div className="portfolio-item" data-testid="portfolio-item-2">
+                  <div className="portfolio-video-wrapper">
+                    <video 
+                      className="portfolio-video"
+                      autoPlay
+                      loop
+                      muted
+                      playsInline
+                      preload="auto"
+                    >
+                      <source src="https://customer-assets.emergentagent.com/job_f89c7579-45ce-4797-86a4-864b9c1026f7/artifacts/luskimt2_copy_3F55AC6B-5FBA-409A-BEA5-D4925190E716.MOV" type="video/quicktime" />
+                      <source src="https://customer-assets.emergentagent.com/job_f89c7579-45ce-4797-86a4-864b9c1026f7/artifacts/luskimt2_copy_3F55AC6B-5FBA-409A-BEA5-D4925190E716.MOV" type="video/mp4" />
+                    </video>
+                  </div>
+                  <div className="portfolio-info">
+                    <h3 className="portfolio-project-title">Creative Work</h3>
+                    <p className="portfolio-project-role">AI Video Art</p>
+                  </div>
+                </div>
+
+                <div className="portfolio-item" data-testid="portfolio-item-3">
+                  <div className="portfolio-video-wrapper">
+                    <video 
+                      className="portfolio-video"
+                      autoPlay
+                      loop
+                      muted
+                      playsInline
+                      preload="auto"
+                    >
+                      <source src="https://customer-assets.emergentagent.com/job_f89c7579-45ce-4797-86a4-864b9c1026f7/artifacts/wjml9oab_copy_FE7C6C77-06D3-4BBB-A7F1-05114D95309A.MOV" type="video/quicktime" />
+                      <source src="https://customer-assets.emergentagent.com/job_f89c7579-45ce-4797-86a4-864b9c1026f7/artifacts/wjml9oab_copy_FE7C6C77-06D3-4BBB-A7F1-05114D95309A.MOV" type="video/mp4" />
+                    </video>
+                  </div>
+                  <div className="portfolio-info">
+                    <h3 className="portfolio-project-title">Visual Exploration</h3>
+                    <p className="portfolio-project-role">Experimental Media</p>
+                  </div>
+                </div>
+
+                <div className="portfolio-item" data-testid="portfolio-item-4">
+                  <div className="portfolio-video-wrapper">
+                    <video 
+                      className="portfolio-video"
+                      autoPlay
+                      loop
+                      muted
+                      playsInline
+                      preload="auto"
+                    >
+                      <source src="https://customer-assets.emergentagent.com/job_f89c7579-45ce-4797-86a4-864b9c1026f7/artifacts/wfu9u7ya_copy_654B0D2E-9F53-480A-A6AA-B05D56963BD9.MOV" type="video/quicktime" />
+                      <source src="https://customer-assets.emergentagent.com/job_f89c7579-45ce-4797-96a4-864b9c1026f7/artifacts/wfu9u7ya_copy_654B0D2E-9F53-480A-A6AA-B05D56963BD9.MOV" type="video/mp4" />
+                    </video>
+                  </div>
+                  <div className="portfolio-info">
+                    <h3 className="portfolio-project-title">Motion Design</h3>
+                    <p className="portfolio-project-role">Digital Art</p>
+                  </div>
+                </div>
+
+                <div className="portfolio-item" data-testid="portfolio-item-5">
+                  <div className="portfolio-video-wrapper">
+                    <video 
+                      className="portfolio-video"
+                      autoPlay
+                      loop
+                      muted
+                      playsInline
+                      preload="auto"
+                    >
+                      <source src="https://customer-assets.emergentagent.com/job_f89c7579-45ce-4797-86a4-864b9c1026f7/artifacts/xxf7gddq_copy_67AB9974-530F-4871-830C-C0108EFD6DEA.mov" type="video/quicktime" />
+                      <source src="https://customer-assets.emergentagent.com/job_f89c7579-45ce-4797-86a4-864b9c1026f7/artifacts/xxf7gddq_copy_67AB9974-530F-4871-830C-C0108EFD6DEA.mov" type="video/mp4" />
+                    </video>
+                  </div>
+                  <div className="portfolio-info">
+                    <h3 className="portfolio-project-title">Generative Art</h3>
+                    <p className="portfolio-project-role">Computational Media</p>
+                  </div>
+                </div>
+
+                <div className="portfolio-item" data-testid="portfolio-item-6">
+                  <div className="portfolio-video-wrapper">
+                    <video 
+                      className="portfolio-video"
+                      autoPlay
+                      loop
+                      muted
+                      playsInline
+                      preload="auto"
+                    >
+                      <source src="https://customer-assets.emergentagent.com/job_f89c7579-45ce-4797-86a4-864b9c1026f7/artifacts/imquazrs_copy_093AB1A6-6CFB-4EDD-8180-3FF7CF4904D0.MOV" type="video/quicktime" />
+                      <source src="https://customer-assets.emergentagent.com/job_f89c7579-45ce-4797-86a4-864b9c1026f7/artifacts/imquazrs_copy_093AB1A6-6CFB-4EDD-8180-3FF7CF4904D0.MOV" type="video/mp4" />
+                    </video>
+                  </div>
+                  <div className="portfolio-info">
+                    <h3 className="portfolio-project-title">Immersive Experience</h3>
+                    <p className="portfolio-project-role">Interactive Media</p>
+                  </div>
+                </div>
+
+                <div className="portfolio-item portfolio-placeholder-item" data-testid="portfolio-placeholder">
+                  <div className="portfolio-placeholder-content">
+                    <p className="portfolio-placeholder-text">More projects coming soon</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* VITA Section - Moved Down */}
         <section id="vita" className="section section-alt" data-testid="vita-section">
           <div className="content-wrapper">
             <div className="vertical-line"></div>
@@ -169,133 +301,6 @@ function App() {
                   <p className="vita-text">
                     Every project is an opportunity to push boundaries and challenge conventions.
                   </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* PORTFOLIO Section */}
-        <section id="portfolio" className="section" data-testid="portfolio-section">
-          <div className="content-wrapper">
-            <div className="vertical-line"></div>
-            <div className="main-content">
-              <h2 className="section-title" data-testid="portfolio-title">portfolio</h2>
-              
-              <div className="portfolio-grid">
-                <div className="portfolio-item" data-testid="portfolio-item-1">
-                  <div className="portfolio-image-wrapper">
-                    <img 
-                      src="https://customer-assets.emergentagent.com/job_f89c7579-45ce-4797-86a4-864b9c1026f7/artifacts/m8evkh55_EgxieYPDJCs.webp"
-                      alt="Runway GEN:48 Aleph Edition - People's Choice Winner"
-                      className="portfolio-image"
-                    />
-                  </div>
-                  <div className="portfolio-info">
-                    <h3 className="portfolio-project-title">Runway GEN:48 Aleph Edition</h3>
-                    <p className="portfolio-project-role">People's Choice Winner</p>
-                  </div>
-                </div>
-
-                <div className="portfolio-item" data-testid="portfolio-item-2">
-                  <div className="portfolio-video-wrapper">
-                    <video 
-                      className="portfolio-video"
-                      controls
-                      loop
-                      preload="metadata"
-                    >
-                      <source src="https://customer-assets.emergentagent.com/job_f89c7579-45ce-4797-86a4-864b9c1026f7/artifacts/luskimt2_copy_3F55AC6B-5FBA-409A-BEA5-D4925190E716.MOV" type="video/quicktime" />
-                      <source src="https://customer-assets.emergentagent.com/job_f89c7579-45ce-4797-86a4-864b9c1026f7/artifacts/luskimt2_copy_3F55AC6B-5FBA-409A-BEA5-D4925190E716.MOV" type="video/mp4" />
-                      Your browser does not support the video tag.
-                    </video>
-                  </div>
-                  <div className="portfolio-info">
-                    <h3 className="portfolio-project-title">Creative Work</h3>
-                    <p className="portfolio-project-role">AI Video Art</p>
-                  </div>
-                </div>
-
-                <div className="portfolio-item" data-testid="portfolio-item-3">
-                  <div className="portfolio-video-wrapper">
-                    <video 
-                      className="portfolio-video"
-                      controls
-                      loop
-                      preload="metadata"
-                    >
-                      <source src="https://customer-assets.emergentagent.com/job_f89c7579-45ce-4797-86a4-864b9c1026f7/artifacts/wjml9oab_copy_FE7C6C77-06D3-4BBB-A7F1-05114D95309A.MOV" type="video/quicktime" />
-                      <source src="https://customer-assets.emergentagent.com/job_f89c7579-45ce-4797-86a4-864b9c1026f7/artifacts/wjml9oab_copy_FE7C6C77-06D3-4BBB-A7F1-05114D95309A.MOV" type="video/mp4" />
-                      Your browser does not support the video tag.
-                    </video>
-                  </div>
-                  <div className="portfolio-info">
-                    <h3 className="portfolio-project-title">Visual Exploration</h3>
-                    <p className="portfolio-project-role">Experimental Media</p>
-                  </div>
-                </div>
-
-                <div className="portfolio-item" data-testid="portfolio-item-4">
-                  <div className="portfolio-video-wrapper">
-                    <video 
-                      className="portfolio-video"
-                      controls
-                      loop
-                      preload="metadata"
-                    >
-                      <source src="https://customer-assets.emergentagent.com/job_f89c7579-45ce-4797-86a4-864b9c1026f7/artifacts/wfu9u7ya_copy_654B0D2E-9F53-480A-A6AA-B05D56963BD9.MOV" type="video/quicktime" />
-                      <source src="https://customer-assets.emergentagent.com/job_f89c7579-45ce-4797-86a4-864b9c1026f7/artifacts/wfu9u7ya_copy_654B0D2E-9F53-480A-A6AA-B05D56963BD9.MOV" type="video/mp4" />
-                      Your browser does not support the video tag.
-                    </video>
-                  </div>
-                  <div className="portfolio-info">
-                    <h3 className="portfolio-project-title">Motion Design</h3>
-                    <p className="portfolio-project-role">Digital Art</p>
-                  </div>
-                </div>
-
-                <div className="portfolio-item" data-testid="portfolio-item-5">
-                  <div className="portfolio-video-wrapper">
-                    <video 
-                      className="portfolio-video"
-                      controls
-                      loop
-                      preload="metadata"
-                    >
-                      <source src="https://customer-assets.emergentagent.com/job_f89c7579-45ce-4797-86a4-864b9c1026f7/artifacts/xxf7gddq_copy_67AB9974-530F-4871-830C-C0108EFD6DEA.mov" type="video/quicktime" />
-                      <source src="https://customer-assets.emergentagent.com/job_f89c7579-45ce-4797-86a4-864b9c1026f7/artifacts/xxf7gddq_copy_67AB9974-530F-4871-830C-C0108EFD6DEA.mov" type="video/mp4" />
-                      Your browser does not support the video tag.
-                    </video>
-                  </div>
-                  <div className="portfolio-info">
-                    <h3 className="portfolio-project-title">Generative Art</h3>
-                    <p className="portfolio-project-role">Computational Media</p>
-                  </div>
-                </div>
-
-                <div className="portfolio-item" data-testid="portfolio-item-6">
-                  <div className="portfolio-video-wrapper">
-                    <video 
-                      className="portfolio-video"
-                      controls
-                      loop
-                      preload="metadata"
-                    >
-                      <source src="https://customer-assets.emergentagent.com/job_f89c7579-45ce-4797-86a4-864b9c1026f7/artifacts/imquazrs_copy_093AB1A6-6CFB-4EDD-8180-3FF7CF4904D0.MOV" type="video/quicktime" />
-                      <source src="https://customer-assets.emergentagent.com/job_f89c7579-45ce-4797-86a4-864b9c1026f7/artifacts/imquazrs_copy_093AB1A6-6CFB-4EDD-8180-3FF7CF4904D0.MOV" type="video/mp4" />
-                      Your browser does not support the video tag.
-                    </video>
-                  </div>
-                  <div className="portfolio-info">
-                    <h3 className="portfolio-project-title">Immersive Experience</h3>
-                    <p className="portfolio-project-role">Interactive Media</p>
-                  </div>
-                </div>
-
-                <div className="portfolio-item portfolio-placeholder-item" data-testid="portfolio-placeholder">
-                  <div className="portfolio-placeholder-content">
-                    <p className="portfolio-placeholder-text">More projects coming soon</p>
-                  </div>
                 </div>
               </div>
             </div>
