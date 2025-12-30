@@ -458,6 +458,7 @@ body {
   background: var(--glass-bg);
   border: 1px solid var(--glass-border);
   transition: all 0.4s ease;
+  position: relative;
 }
 
 .portfolio-image-wrapper:hover,
@@ -472,30 +473,24 @@ body {
   height: auto;
   display: block;
   transition: all 0.4s ease;
-}
-
-.portfolio-video {
   border-radius: 12px;
-  opacity: 0.85;
-  animation: videoFadeLoop 8s ease-in-out infinite;
 }
 
-@keyframes videoFadeLoop {
-  0%, 100% {
-    opacity: 0.85;
-  }
-  50% {
-    opacity: 0.95;
-  }
+/* Custom glass video controls styling */
+.portfolio-video::-webkit-media-controls-panel {
+  background: var(--glass-bg);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
 }
 
+.portfolio-video::-webkit-media-controls-play-button,
+.portfolio-video::-webkit-media-controls-volume-slider,
+.portfolio-video::-webkit-media-controls-timeline {
+  filter: brightness(1.2);
+}
+
+.portfolio-item:hover .portfolio-image,
 .portfolio-item:hover .portfolio-video {
-  opacity: 1;
-  transform: scale(1.02);
-  animation: none;
-}
-
-.portfolio-item:hover .portfolio-image {
   transform: scale(1.02);
 }
 
