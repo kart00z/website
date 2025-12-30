@@ -347,7 +347,7 @@ function App() {
                 
                 <div className="contact-links">
                   <a
-                    href="mailto:kartikye@example.com"
+                    href="mailto:kartikyekashyap@gmail.com"
                     className="contact-link"
                     data-testid="contact-email"
                     target="_blank"
