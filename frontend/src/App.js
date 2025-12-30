@@ -179,11 +179,9 @@ function App() {
                   <div className="portfolio-video-wrapper">
                     <video 
                       className="portfolio-video"
-                      autoPlay
+                      controls
                       loop
-                      muted
-                      playsInline
-                      preload="auto"
+                      preload="metadata"
                     >
                       <source src="https://customer-assets.emergentagent.com/job_f89c7579-45ce-4797-86a4-864b9c1026f7/artifacts/luskimt2_copy_3F55AC6B-5FBA-409A-BEA5-D4925190E716.MOV" type="video/quicktime" />
                       <source src="https://customer-assets.emergentagent.com/job_f89c7579-45ce-4797-86a4-864b9c1026f7/artifacts/luskimt2_copy_3F55AC6B-5FBA-409A-BEA5-D4925190E716.MOV" type="video/mp4" />
@@ -199,11 +197,9 @@ function App() {
                   <div className="portfolio-video-wrapper">
                     <video 
                       className="portfolio-video"
-                      autoPlay
+                      controls
                       loop
-                      muted
-                      playsInline
-                      preload="auto"
+                      preload="metadata"
                     >
                       <source src="https://customer-assets.emergentagent.com/job_f89c7579-45ce-4797-86a4-864b9c1026f7/artifacts/wjml9oab_copy_FE7C6C77-06D3-4BBB-A7F1-05114D95309A.MOV" type="video/quicktime" />
                       <source src="https://customer-assets.emergentagent.com/job_f89c7579-45ce-4797-86a4-864b9c1026f7/artifacts/wjml9oab_copy_FE7C6C77-06D3-4BBB-A7F1-05114D95309A.MOV" type="video/mp4" />
@@ -219,14 +215,12 @@ function App() {
                   <div className="portfolio-video-wrapper">
                     <video 
                       className="portfolio-video"
-                      autoPlay
+                      controls
                       loop
-                      muted
-                      playsInline
-                      preload="auto"
+                      preload="metadata"
                     >
                       <source src="https://customer-assets.emergentagent.com/job_f89c7579-45ce-4797-86a4-864b9c1026f7/artifacts/wfu9u7ya_copy_654B0D2E-9F53-480A-A6AA-B05D56963BD9.MOV" type="video/quicktime" />
-                      <source src="https://customer-assets.emergentagent.com/job_f89c7579-45ce-4797-96a4-864b9c1026f7/artifacts/wfu9u7ya_copy_654B0D2E-9F53-480A-A6AA-B05D56963BD9.MOV" type="video/mp4" />
+                      <source src="https://customer-assets.emergentagent.com/job_f89c7579-45ce-4797-86a4-864b9c1026f7/artifacts/wfu9u7ya_copy_654B0D2E-9F53-480A-A6AA-B05D56963BD9.MOV" type="video/mp4" />
                     </video>
                   </div>
                   <div className="portfolio-info">
@@ -239,11 +233,9 @@ function App() {
                   <div className="portfolio-video-wrapper">
                     <video 
                       className="portfolio-video"
-                      autoPlay
+                      controls
                       loop
-                      muted
-                      playsInline
-                      preload="auto"
+                      preload="metadata"
                     >
                       <source src="https://customer-assets.emergentagent.com/job_f89c7579-45ce-4797-86a4-864b9c1026f7/artifacts/xxf7gddq_copy_67AB9974-530F-4871-830C-C0108EFD6DEA.mov" type="video/quicktime" />
                       <source src="https://customer-assets.emergentagent.com/job_f89c7579-45ce-4797-86a4-864b9c1026f7/artifacts/xxf7gddq_copy_67AB9974-530F-4871-830C-C0108EFD6DEA.mov" type="video/mp4" />
@@ -259,11 +251,9 @@ function App() {
                   <div className="portfolio-video-wrapper">
                     <video 
                       className="portfolio-video"
-                      autoPlay
+                      controls
                       loop
-                      muted
-                      playsInline
-                      preload="auto"
+                      preload="metadata"
                     >
                       <source src="https://customer-assets.emergentagent.com/job_f89c7579-45ce-4797-86a4-864b9c1026f7/artifacts/imquazrs_copy_093AB1A6-6CFB-4EDD-8180-3FF7CF4904D0.MOV" type="video/quicktime" />
                       <source src="https://customer-assets.emergentagent.com/job_f89c7579-45ce-4797-86a4-864b9c1026f7/artifacts/imquazrs_copy_093AB1A6-6CFB-4EDD-8180-3FF7CF4904D0.MOV" type="video/mp4" />
