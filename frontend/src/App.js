@@ -144,7 +144,7 @@ function App() {
                 <div className="vita-item">
                   <h3 className="vita-heading">Recognition</h3>
                   <p className="vita-text highlight-achievement">
-                    🏆 People's Choice Winner - Runway GEN:48 Aleph Edition
+                    People's Choice Winner - Runway GEN:48 Aleph Edition
                   </p>
                   <p className="vita-text">
                     Recognized for pushing creative boundaries with AI-generated video art.
