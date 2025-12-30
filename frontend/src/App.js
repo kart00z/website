@@ -56,6 +56,7 @@ function App() {
           onClick={toggleTheme}
           aria-label="Toggle theme"
           data-testid="theme-toggle"
+          style={{ transform: `rotate(${scrollRotation}deg)` }}
         >
           {theme === 'dark' ? (
             // Moon icon for dark mode
