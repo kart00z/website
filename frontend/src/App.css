@@ -191,24 +191,41 @@ body {
   height: 100%;
   pointer-events: none;
   z-index: 1;
-  overflow: hidden;
+  overflow: visible;
 }
 
 .ambient-video {
   position: absolute;
-  border-radius: 16px;
+  border-radius: 20px;
   overflow: hidden;
   opacity: 0;
   animation: ambientFadeIn 2s ease-in-out forwards;
   border: 1px solid var(--glass-border);
-  box-shadow: 0 0 30px var(--glow-color);
+  box-shadow: 0 0 40px var(--glow-color);
+}
+
+/* Fade mask for seamless edges */
+.ambient-video::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 20px;
+  background: radial-gradient(
+    ellipse at center,
+    transparent 40%,
+    var(--bg-primary) 100%
+  );
+  pointer-events: none;
 }
 
 .ambient-video video {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  opacity: 0.3;
+  opacity: 0.4;
   animation: ambientPulse 8s ease-in-out infinite;
 }
 
@@ -225,52 +242,55 @@ body {
 
 @keyframes ambientPulse {
   0%, 100% {
-    opacity: 0.3;
+    opacity: 0.4;
   }
   50% {
-    opacity: 0.5;
+    opacity: 0.6;
   }
 }
 
-/* Positioning ambient videos around the content */
+/* Positioning ambient videos with better spacing */
 .ambient-video-1 {
-  top: 10%;
-  right: 5%;
-  width: 200px;
-  height: 200px;
+  top: 5%;
+  right: 8%;
+  width: 240px;
+  height: 240px;
   animation-delay: 0.5s;
 }
 
 .ambient-video-2 {
-  bottom: 15%;
-  right: 10%;
-  width: 180px;
-  height: 180px;
+  bottom: 20%;
+  right: 15%;
+  width: 200px;
+  height: 200px;
   animation-delay: 1s;
 }
 
 .ambient-video-3 {
-  top: 50%;
-  right: 0%;
-  width: 220px;
-  height: 220px;
+  top: 45%;
+  right: -5%;
+  width: 260px;
+  height: 260px;
   animation-delay: 1.5s;
 }
 
-@media (max-width: 1024px) {
+@media (max-width: 1200px) {
   .ambient-video-1 {
-    width: 150px;
-    height: 150px;
+    width: 180px;
+    height: 180px;
+    right: 5%;
   }
   
   .ambient-video-2 {
-    width: 130px;
-    height: 130px;
+    width: 150px;
+    height: 150px;
+    right: 10%;
   }
   
   .ambient-video-3 {
-    width: 160px;
-    height: 160px;
+    width: 200px;
+    height: 200px;
+    right: 0%;
   }
 }
 
