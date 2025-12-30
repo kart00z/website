@@ -142,6 +142,16 @@ function App() {
               
               <div className="glass-card" data-testid="vita-content">
                 <div className="vita-item">
+                  <h3 className="vita-heading">Recognition</h3>
+                  <p className="vita-text highlight-achievement">
+                    🏆 People's Choice Winner - Runway GEN:48 Aleph Edition
+                  </p>
+                  <p className="vita-text">
+                    Recognized for pushing creative boundaries with AI-generated video art.
+                  </p>
+                </div>
+
+                <div className="vita-item">
                   <h3 className="vita-heading">Experience & Background</h3>
                   <p className="vita-text">
                     A multidisciplinary creator at the intersection of technology and creativity.
