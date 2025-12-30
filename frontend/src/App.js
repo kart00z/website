@@ -183,43 +183,23 @@ function App() {
               <h2 className="section-title" data-testid="portfolio-title">portfolio</h2>
               
               <div className="portfolio-grid">
-                <div className="glass-card portfolio-card" data-testid="portfolio-item-1">
-                  <div className="portfolio-image-container">
+                <div className="portfolio-item" data-testid="portfolio-item-1">
+                  <div className="portfolio-image-wrapper">
                     <img 
                       src="https://customer-assets.emergentagent.com/job_f89c7579-45ce-4797-86a4-864b9c1026f7/artifacts/m8evkh55_EgxieYPDJCs.webp"
                       alt="Runway GEN:48 Aleph Edition - People's Choice Winner"
                       className="portfolio-image"
                     />
-                    <div className="portfolio-overlay">
-                      <div className="award-badge">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-                        </svg>
-                        <span>People's Choice</span>
-                      </div>
-                    </div>
                   </div>
-                  <div className="portfolio-content">
-                    <h3 className="portfolio-title">Runway GEN:48 Aleph Edition</h3>
-                    <p className="portfolio-description">
-                      People's Choice Winner - AI-generated video art exploring the intersection of technology and creativity.
-                    </p>
-                    <div className="portfolio-tags">
-                      <span className="portfolio-tag">AI Video</span>
-                      <span className="portfolio-tag">Runway</span>
-                      <span className="portfolio-tag">Award Winner</span>
-                    </div>
+                  <div className="portfolio-info">
+                    <h3 className="portfolio-project-title">Runway GEN:48 Aleph Edition</h3>
+                    <p className="portfolio-project-role">People's Choice Winner</p>
                   </div>
                 </div>
 
-                <div className="glass-card portfolio-card portfolio-placeholder-card" data-testid="portfolio-placeholder">
-                  <div className="portfolio-placeholder">
-                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-                      <rect x="3" y="3" width="18" height="18" rx="2" />
-                      <circle cx="8.5" cy="8.5" r="1.5" />
-                      <path d="M21 15l-5-5L5 21" />
-                    </svg>
-                    <p className="placeholder-text">More projects coming soon</p>
+                <div className="portfolio-item portfolio-placeholder-item" data-testid="portfolio-placeholder">
+                  <div className="portfolio-placeholder-content">
+                    <p className="portfolio-placeholder-text">More projects coming soon</p>
                   </div>
                 </div>
               </div>
