@@ -327,6 +327,27 @@ body {
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  opacity: 0;
+  animation: portfolioFadeIn 1s ease-in-out forwards;
+}
+
+.portfolio-item:nth-child(1) { animation-delay: 0.1s; }
+.portfolio-item:nth-child(2) { animation-delay: 0.2s; }
+.portfolio-item:nth-child(3) { animation-delay: 0.3s; }
+.portfolio-item:nth-child(4) { animation-delay: 0.4s; }
+.portfolio-item:nth-child(5) { animation-delay: 0.5s; }
+.portfolio-item:nth-child(6) { animation-delay: 0.6s; }
+.portfolio-item:nth-child(7) { animation-delay: 0.7s; }
+
+@keyframes portfolioFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .portfolio-image-wrapper,
@@ -350,15 +371,31 @@ body {
   width: 100%;
   height: auto;
   display: block;
-  transition: transform 0.4s ease, opacity 0.3s ease;
+  transition: all 0.4s ease;
 }
 
 .portfolio-video {
   border-radius: 12px;
+  opacity: 0.85;
+  animation: videoFadeLoop 8s ease-in-out infinite;
 }
 
-.portfolio-item:hover .portfolio-image,
+@keyframes videoFadeLoop {
+  0%, 100% {
+    opacity: 0.85;
+  }
+  50% {
+    opacity: 0.95;
+  }
+}
+
 .portfolio-item:hover .portfolio-video {
+  opacity: 1;
+  transform: scale(1.02);
+  animation: none;
+}
+
+.portfolio-item:hover .portfolio-image {
   transform: scale(1.02);
 }
 
