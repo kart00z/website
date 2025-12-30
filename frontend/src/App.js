@@ -13,7 +13,7 @@ function App() {
       setScrollRotation(scrolled * 0.5);
 
       // Determine active section based on scroll position
-      const sections = ['intro', 'vita', 'portfolio', 'contact'];
+      const sections = ['intro', 'portfolio', 'vita', 'contact'];
       const windowHeight = window.innerHeight;
       
       for (let section of sections) {
