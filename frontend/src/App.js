@@ -7,35 +7,57 @@ function App() {
   const [activeSection, setActiveSection] = useState('intro');
   const [theme, setTheme] = useState('dark');
 
-  // Simple video playback - keep trying to play
+  // Simple video playback - keep trying to play and sync reflections
   useEffect(() => {
-    const playVideos = () => {
-      document.querySelectorAll('.gallery-video-main, .gallery-video-reflect').forEach(video => {
-        if (video.paused) {
-          video.play().catch(() => {});
-        }
-        if (video.ended) {
-          video.currentTime = 0;
-          video.play().catch(() => {});
+    const syncAndPlayVideos = () => {
+      // Get all gallery cards
+      const cards = document.querySelectorAll('.gallery-card');
+      cards.forEach(card => {
+        const mainVideo = card.querySelector('.gallery-video-main');
+        const reflectVideo = card.querySelector('.gallery-video-reflect');
+        
+        if (mainVideo && reflectVideo) {
+          // Play main video if paused
+          if (mainVideo.paused) {
+            mainVideo.play().catch(() => {});
+          }
+          
+          // Sync reflection to main video
+          if (Math.abs(mainVideo.currentTime - reflectVideo.currentTime) > 0.1) {
+            reflectVideo.currentTime = mainVideo.currentTime;
+          }
+          
+          // Play reflection if paused
+          if (reflectVideo.paused) {
+            reflectVideo.play().catch(() => {});
+          }
+          
+          // Restart if ended
+          if (mainVideo.ended) {
+            mainVideo.currentTime = 0;
+            reflectVideo.currentTime = 0;
+            mainVideo.play().catch(() => {});
+            reflectVideo.play().catch(() => {});
+          }
         }
       });
     };
 
-    // Try every 300ms
-    const interval = setInterval(playVideos, 300);
+    // Check every 200ms for sync and playback
+    const interval = setInterval(syncAndPlayVideos, 200);
     
     // Also on any user action
-    const events = ['click', 'touchstart', 'scroll', 'keydown', 'mousemove'];
-    events.forEach(e => document.addEventListener(e, playVideos, { passive: true }));
+    const events = ['click', 'touchstart', 'scroll', 'keydown'];
+    events.forEach(e => document.addEventListener(e, syncAndPlayVideos, { passive: true }));
     
     // On visibility change
     document.addEventListener('visibilitychange', () => {
-      if (!document.hidden) playVideos();
+      if (!document.hidden) syncAndPlayVideos();
     });
 
     return () => {
       clearInterval(interval);
-      events.forEach(e => document.removeEventListener(e, playVideos));
+      events.forEach(e => document.removeEventListener(e, syncAndPlayVideos));
     };
   }, []);
 
