@@ -242,11 +242,9 @@ body {
   transform-style: preserve-3d;
   transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   will-change: transform, opacity;
-  /* Ensure reflections aren't clipped */
-  overflow: visible;
 }
 
-/* Video wrapper with edge fade */
+/* Video wrapper - the actual card */
 .card-video-wrapper {
   width: 100%;
   height: 100%;
@@ -266,80 +264,74 @@ body {
   background: #111;
 }
 
-/* Edge fade effect - very subtle blend into background */
+/* Remove the edge fade overlay */
 .card-video-wrapper::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: 16px;
-  pointer-events: none;
-  /* Subtle edge-only fade */
-  box-shadow: inset 0 0 30px 5px rgba(0,0,0,0.3);
-  opacity: 0.4;
+  display: none;
 }
 
 /* ============================================
-   REFLECTION ON FROSTED GLASS FLOOR
-   - Positioned BELOW each card
-   - Flipped mirror image of the video
-   - Blurred but vibrant (frosted glass effect)
+   FLOOR REFLECTION - Separate element below card
    ============================================ */
 .card-reflection {
   position: absolute;
-  top: 100%;
+  top: 285px; /* Card height (280px) + 5px gap */
   left: 0;
   width: 100%;
-  height: 140px;
-  margin-top: 5px;
+  height: 120px;
   overflow: hidden;
   pointer-events: none;
-  /* Flip vertically to create mirror effect */
-  transform: scaleY(-1);
-  transform-origin: top center;
-  border-radius: 0 0 16px 16px;
+  z-index: -1; /* Behind the card */
+  border-radius: 16px;
 }
 
+/* The flipped video inside reflection */
 .card-reflection video {
   width: 100%;
   height: 280px;
   object-fit: cover;
-  object-position: bottom;
-  /* Frosted glass blur - blurred but still vibrant */
-  filter: blur(8px) saturate(1.2) brightness(0.8);
+  object-position: top;
+  transform: scaleY(-1); /* Flip vertically */
+  transform-origin: top;
+  /* Frosted glass effect - blurred but vibrant */
+  filter: blur(12px) saturate(1.1) brightness(0.6);
+  opacity: 0.7;
 }
 
-/* Gradient mask - fades reflection out towards bottom */
+/* Gradient fade - makes reflection fade into the background */
 .card-reflection::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    to bottom,
-    transparent 0%,
-    rgba(0, 0, 0, 0.3) 40%,
-    rgba(0, 0, 0, 0.7) 70%,
-    var(--bg-primary) 100%
-  );
-  pointer-events: none;
-}
-
-/* Subtle glass shine on the "floor" */
-.card-reflection::before {
   content: '';
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
-  height: 2px;
+  bottom: 0;
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    rgba(0, 0, 0, 0.4) 30%,
+    rgba(0, 0, 0, 0.8) 70%,
+    var(--bg-primary) 100%
+  );
+  pointer-events: none;
+}
+
+/* Glass floor shine line */
+.card-reflection::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 10%;
+  right: 10%;
+  height: 1px;
   background: linear-gradient(
     90deg,
     transparent 0%,
-    rgba(255, 255, 255, 0.3) 30%,
+    rgba(255, 255, 255, 0.2) 20%,
     rgba(255, 255, 255, 0.4) 50%,
-    rgba(255, 255, 255, 0.3) 70%,
+    rgba(255, 255, 255, 0.2) 80%,
     transparent 100%
   );
-  z-index: 2;
+  z-index: 5;
 }
 
 /* ============================================
