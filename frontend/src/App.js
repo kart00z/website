@@ -163,6 +163,19 @@ function App() {
   return (
     <BrowserRouter>
       <div className="App">
+        {/* Click to start videos overlay - for browsers that block autoplay */}
+        {!videosStarted && (
+          <div 
+            className="video-start-overlay" 
+            onClick={() => setVideosStarted(true)}
+            data-testid="video-start-overlay"
+          >
+            <div className="video-start-content">
+              <span>Click anywhere to start</span>
+            </div>
+          </div>
+        )}
+
         {/* Theme Toggle - Sun/Moon */}
         <button 
           className="theme-toggle" 
