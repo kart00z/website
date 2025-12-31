@@ -687,6 +687,9 @@ body {
   display: block;
   transition: all 0.4s ease;
   border-radius: 12px;
+  /* Ensure no blur on portfolio videos */
+  filter: none !important;
+  -webkit-filter: none !important;
 }
 
 /* Custom glass video controls styling */
