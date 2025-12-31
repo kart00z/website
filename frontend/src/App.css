@@ -303,36 +303,33 @@ body {
 }
 
 /* ============================================
-   REFLECTION - Heavily blurred ambient glow, no visible edges
+   REFLECTION - Pure ambient glow, completely diffused
    ============================================ */
 .card-reflect {
   position: absolute;
   top: 100%;
-  left: -10%;
-  width: 120%;
-  height: 80px;
-  margin-top: 20px;
+  left: -20%;
+  width: 140%;
+  height: 60px;
+  margin-top: 25px;
   pointer-events: none;
   transform: scaleY(-1);
-  /* NO overflow hidden - let blur create soft edges naturally */
-  opacity: 0.6;
+  opacity: 0.5;
 }
 
 .card-reflect video {
   width: 100%;
-  height: 200px;
+  height: 150px;
   object-fit: cover;
   object-position: top;
-  /* VERY heavy blur - makes edges completely soft */
-  filter: blur(35px) saturate(1.3) brightness(0.5);
+  /* EXTREME blur - pure ambient glow */
+  filter: blur(50px) saturate(1.4) brightness(0.4);
 }
 
-/* Hide the inner fade - not needed with heavy blur */
 .reflect-fade {
   display: none;
 }
 
-/* Remove the overlay - heavy blur handles everything */
 .gallery-card::after {
   display: none;
 }
