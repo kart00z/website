@@ -190,6 +190,16 @@ function App() {
                     <source src="https://customer-assets.emergentagent.com/job_f89c7579-45ce-4797-86a4-864b9c1026f7/artifacts/wfu9u7ya_copy_654B0D2E-9F53-480A-A6AA-B05D56963BD9.MOV" type="video/quicktime" />
                   </video>
                 </div>
+                <div className="gallery-video gallery-video-4">
+                  <video autoPlay loop muted playsInline preload="auto">
+                    <source src="https://customer-assets.emergentagent.com/job_f89c7579-45ce-4797-86a4-864b9c1026f7/artifacts/xxf7gddq_copy_67AB9974-530F-4871-830C-C0108EFD6DEA.mov" type="video/quicktime" />
+                  </video>
+                </div>
+                <div className="gallery-video gallery-video-5">
+                  <video autoPlay loop muted playsInline preload="auto">
+                    <source src="https://customer-assets.emergentagent.com/job_f89c7579-45ce-4797-86a4-864b9c1026f7/artifacts/imquazrs_copy_093AB1A6-6CFB-4EDD-8180-3FF7CF4904D0.MOV" type="video/quicktime" />
+                  </video>
+                </div>
               </div>
             </div>
           </div>
