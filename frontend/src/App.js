@@ -7,45 +7,88 @@ function App() {
   const [activeSection, setActiveSection] = useState('intro');
   const [theme, setTheme] = useState('dark');
 
-  // AGGRESSIVE video playback - only for gallery videos
+  // ULTRA AGGRESSIVE video playback - never stop
   useEffect(() => {
+    let animationId;
+    
     const forcePlayGalleryVideos = () => {
-      // Only target gallery videos, not portfolio videos
       const galleryVideos = document.querySelectorAll('.gallery-video-main, .gallery-video-reflect');
       galleryVideos.forEach(video => {
-        // Check if video is paused or stuck
-        if (video.paused || video.ended) {
+        // Always try to play if paused
+        if (video.paused) {
+          video.play().catch(() => {});
+        }
+        
+        // Check if ended and restart
+        if (video.ended) {
           video.currentTime = 0;
           video.play().catch(() => {});
         }
-        // Also check if video is actually progressing
+        
+        // Detect stuck video (not progressing)
         const lastTime = parseFloat(video.dataset.lastTime) || 0;
-        if (Math.abs(video.currentTime - lastTime) < 0.01 && !video.paused && video.currentTime > 0) {
-          // Video might be stuck, try to restart
-          video.currentTime = 0;
-          video.play().catch(() => {});
+        const lastCheck = parseFloat(video.dataset.lastCheck) || 0;
+        const now = Date.now();
+        
+        // If 1 second has passed and time hasn't changed, video is stuck
+        if (now - lastCheck > 1000) {
+          if (Math.abs(video.currentTime - lastTime) < 0.1 && video.currentTime > 0) {
+            video.currentTime = 0;
+            video.play().catch(() => {});
+          }
+          video.dataset.lastTime = video.currentTime;
+          video.dataset.lastCheck = now;
         }
-        video.dataset.lastTime = video.currentTime;
+      });
+      
+      // Keep checking with requestAnimationFrame
+      animationId = requestAnimationFrame(forcePlayGalleryVideos);
+    };
+    
+    // Also add event listeners to each video
+    const galleryVideos = document.querySelectorAll('.gallery-video-main, .gallery-video-reflect');
+    galleryVideos.forEach(video => {
+      // Restart on pause
+      video.addEventListener('pause', () => {
+        setTimeout(() => video.play().catch(() => {}), 100);
+      });
+      // Restart on ended
+      video.addEventListener('ended', () => {
+        video.currentTime = 0;
+        video.play().catch(() => {});
+      });
+      // Restart on error
+      video.addEventListener('error', () => {
+        setTimeout(() => {
+          video.load();
+          video.play().catch(() => {});
+        }, 500);
+      });
+      // Restart on stall
+      video.addEventListener('stalled', () => {
+        video.play().catch(() => {});
+      });
+    });
+    
+    // Start the animation frame loop
+    animationId = requestAnimationFrame(forcePlayGalleryVideos);
+    
+    // Also force play on interactions
+    const forcePlay = () => {
+      galleryVideos.forEach(video => {
+        if (video.paused) video.play().catch(() => {});
       });
     };
-
-    // Check every 500ms
-    const interval = setInterval(forcePlayGalleryVideos, 500);
-    
-    // Also force play on any interaction
-    const forcePlay = () => forcePlayGalleryVideos();
     document.addEventListener('click', forcePlay);
     document.addEventListener('touchstart', forcePlay);
-    document.addEventListener('scroll', forcePlay);
-    
-    // Initial play after short delay
-    setTimeout(forcePlayGalleryVideos, 1000);
+    document.addEventListener('visibilitychange', () => {
+      if (!document.hidden) forcePlay();
+    });
 
     return () => {
-      clearInterval(interval);
+      cancelAnimationFrame(animationId);
       document.removeEventListener('click', forcePlay);
       document.removeEventListener('touchstart', forcePlay);
-      document.removeEventListener('scroll', forcePlay);
     };
   }, []);
 
