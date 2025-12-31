@@ -308,11 +308,14 @@ function App() {
               
               <div className="portfolio-grid">
                 {/* Featured: GEN:48 Award Winner */}
-                <div className="portfolio-item portfolio-featured" data-testid="portfolio-featured">
+                <a 
+                  href="https://runwayml.com/gen48?film=infinity" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="portfolio-item portfolio-featured" 
+                  data-testid="portfolio-featured"
+                >
                   <div className="portfolio-featured-wrapper">
-                    <div className="portfolio-featured-badge">
-                      <span className="badge-text">People's Choice Winner</span>
-                    </div>
                     <div className="portfolio-image-wrapper">
                       <img 
                         src="https://customer-assets.emergentagent.com/job_f89c7579-45ce-4797-86a4-864b9c1026f7/artifacts/m8evkh55_EgxieYPDJCs.webp"
@@ -336,7 +339,7 @@ function App() {
                       This film explores the boundaries of AI-assisted storytelling and visual art.
                     </p>
                   </div>
-                </div>
+                </a>
 
                 <div className="portfolio-item" data-testid="portfolio-item-2">
                   <div className="portfolio-video-wrapper">
