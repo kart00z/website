@@ -292,6 +292,15 @@ body {
   position: relative;
   background: #0a0a0a;
   box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+  /* CSS REFLECTION - mirrors the actual video, always in sync */
+  -webkit-box-reflect: below 15px -webkit-linear-gradient(
+    top,
+    transparent 0%,
+    transparent 40%,
+    rgba(0, 0, 0, 0.15) 60%,
+    rgba(0, 0, 0, 0.3) 80%,
+    rgba(0, 0, 0, 0.4) 100%
+  );
 }
 
 .card-main video {
@@ -302,30 +311,9 @@ body {
   transition: filter 0.5s ease;
 }
 
-/* ============================================
-   GALLERY REFLECTION - Lighter for better performance
-   ============================================ */
+/* Remove old reflection styles */
 .card-reflect {
-  position: absolute;
-  top: 295px;
-  left: -15%;
-  width: 130%;
-  height: 100px;
-  pointer-events: none;
-  opacity: 0.55;
-  /* Simpler gradient for better performance */
-  -webkit-mask-image: radial-gradient(ellipse 55% 50% at center 15%, black 0%, rgba(0,0,0,0.4) 50%, transparent 100%);
-  mask-image: radial-gradient(ellipse 55% 50% at center 15%, black 0%, rgba(0,0,0,0.4) 50%, transparent 100%);
-}
-
-.card-reflect video {
-  width: 100%;
-  height: 280px;
-  object-fit: cover;
-  object-position: bottom;
-  transform: scaleY(-1);
-  /* Reduced blur for better performance */
-  filter: blur(35px) saturate(1.2) brightness(0.5);
+  display: none;
 }
 
 .reflect-fade {
