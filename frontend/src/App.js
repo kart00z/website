@@ -194,29 +194,54 @@ function App() {
               {/* Rotating Video Gallery - Below statements */}
               <div className="video-gallery">
                 <div className="gallery-video gallery-video-1">
-                  <video autoPlay loop muted playsInline preload="auto">
+                  <video autoPlay loop muted playsInline preload="auto" className="main-video">
                     <source src="https://customer-assets.emergentagent.com/job_f89c7579-45ce-4797-86a4-864b9c1026f7/artifacts/luskimt2_copy_3F55AC6B-5FBA-409A-BEA5-D4925190E716.MOV" type="video/quicktime" />
                   </video>
+                  <div className="video-reflection">
+                    <video autoPlay loop muted playsInline preload="auto">
+                      <source src="https://customer-assets.emergentagent.com/job_f89c7579-45ce-4797-86a4-864b9c1026f7/artifacts/luskimt2_copy_3F55AC6B-5FBA-409A-BEA5-D4925190E716.MOV" type="video/quicktime" />
+                    </video>
+                  </div>
                 </div>
                 <div className="gallery-video gallery-video-2">
-                  <video autoPlay loop muted playsInline preload="auto">
+                  <video autoPlay loop muted playsInline preload="auto" className="main-video">
                     <source src="https://customer-assets.emergentagent.com/job_f89c7579-45ce-4797-86a4-864b9c1026f7/artifacts/wjml9oab_copy_FE7C6C77-06D3-4BBB-A7F1-05114D95309A.MOV" type="video/quicktime" />
                   </video>
+                  <div className="video-reflection">
+                    <video autoPlay loop muted playsInline preload="auto">
+                      <source src="https://customer-assets.emergentagent.com/job_f89c7579-45ce-4797-86a4-864b9c1026f7/artifacts/wjml9oab_copy_FE7C6C77-06D3-4BBB-A7F1-05114D95309A.MOV" type="video/quicktime" />
+                    </video>
+                  </div>
                 </div>
                 <div className="gallery-video gallery-video-3 active">
-                  <video autoPlay loop muted playsInline preload="auto">
+                  <video autoPlay loop muted playsInline preload="auto" className="main-video">
                     <source src="https://customer-assets.emergentagent.com/job_f89c7579-45ce-4797-86a4-864b9c1026f7/artifacts/wfu9u7ya_copy_654B0D2E-9F53-480A-A6AA-B05D56963BD9.MOV" type="video/quicktime" />
                   </video>
+                  <div className="video-reflection">
+                    <video autoPlay loop muted playsInline preload="auto">
+                      <source src="https://customer-assets.emergentagent.com/job_f89c7579-45ce-4797-86a4-864b9c1026f7/artifacts/wfu9u7ya_copy_654B0D2E-9F53-480A-A6AA-B05D56963BD9.MOV" type="video/quicktime" />
+                    </video>
+                  </div>
                 </div>
                 <div className="gallery-video gallery-video-4">
-                  <video autoPlay loop muted playsInline preload="auto">
+                  <video autoPlay loop muted playsInline preload="auto" className="main-video">
                     <source src="https://customer-assets.emergentagent.com/job_f89c7579-45ce-4797-86a4-864b9c1026f7/artifacts/xxf7gddq_copy_67AB9974-530F-4871-830C-C0108EFD6DEA.mov" type="video/quicktime" />
                   </video>
+                  <div className="video-reflection">
+                    <video autoPlay loop muted playsInline preload="auto">
+                      <source src="https://customer-assets.emergentagent.com/job_f89c7579-45ce-4797-86a4-864b9c1026f7/artifacts/xxf7gddq_copy_67AB9974-530F-4871-830C-C0108EFD6DEA.mov" type="video/quicktime" />
+                    </video>
+                  </div>
                 </div>
                 <div className="gallery-video gallery-video-5">
-                  <video autoPlay loop muted playsInline preload="auto">
+                  <video autoPlay loop muted playsInline preload="auto" className="main-video">
                     <source src="https://customer-assets.emergentagent.com/job_f89c7579-45ce-4797-86a4-864b9c1026f7/artifacts/imquazrs_copy_093AB1A6-6CFB-4EDD-8180-3FF7CF4904D0.MOV" type="video/quicktime" />
                   </video>
+                  <div className="video-reflection">
+                    <video autoPlay loop muted playsInline preload="auto">
+                      <source src="https://customer-assets.emergentagent.com/job_f89c7579-45ce-4797-86a4-864b9c1026f7/artifacts/imquazrs_copy_093AB1A6-6CFB-4EDD-8180-3FF7CF4904D0.MOV" type="video/quicktime" />
+                    </video>
+                  </div>
                 </div>
               </div>
             </div>
