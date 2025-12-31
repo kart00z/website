@@ -342,6 +342,7 @@ function App() {
                   <div className="portfolio-video-wrapper">
                     <video 
                       className="portfolio-video"
+                      style={{ filter: 'none', WebkitFilter: 'none', opacity: 1 }}
                       controls
                       loop
                       preload="metadata"
@@ -358,6 +359,7 @@ function App() {
                   <div className="portfolio-video-wrapper">
                     <video 
                       className="portfolio-video"
+                      style={{ filter: 'none', WebkitFilter: 'none', opacity: 1 }}
                       controls
                       loop
                       preload="metadata"
@@ -374,6 +376,7 @@ function App() {
                   <div className="portfolio-video-wrapper">
                     <video 
                       className="portfolio-video"
+                      style={{ filter: 'none', WebkitFilter: 'none', opacity: 1 }}
                       controls
                       loop
                       preload="metadata"
@@ -390,6 +393,7 @@ function App() {
                   <div className="portfolio-video-wrapper">
                     <video 
                       className="portfolio-video"
+                      style={{ filter: 'none', WebkitFilter: 'none', opacity: 1 }}
                       controls
                       loop
                       preload="metadata"
