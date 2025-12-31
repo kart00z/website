@@ -232,14 +232,9 @@ function App() {
                   "https://customer-assets.emergentagent.com/job_f89c7579-45ce-4797-86a4-864b9c1026f7/artifacts/imquazrs_copy_093AB1A6-6CFB-4EDD-8180-3FF7CF4904D0.MOV"
                 ].map((src, index) => (
                   <div key={index} className={`gallery-card gallery-card-${index}`} data-index={index}>
-                    {/* Main video card */}
+                    {/* Single video with CSS reflection - always in sync */}
                     <div className="card-main">
                       <video autoPlay loop muted playsInline preload="auto" className="gallery-video-main" src={src} />
-                    </div>
-                    {/* Reflection - flipped video below */}
-                    <div className="card-reflect">
-                      <video autoPlay loop muted playsInline preload="auto" className="gallery-video-reflect" src={src} />
-                      <div className="reflect-fade"></div>
                     </div>
                   </div>
                 ))}
