@@ -303,18 +303,18 @@ body {
 }
 
 /* ============================================
-   REFLECTION - Fade out using overlay gradient (works in all browsers)
+   REFLECTION - Simple and working
    ============================================ */
 .card-reflect {
   position: absolute;
   top: 100%;
   left: 0;
   width: 100%;
-  height: 150px;
+  height: 100px;
   margin-top: 4px;
+  overflow: hidden;
   pointer-events: none;
   transform: scaleY(-1);
-  /* NO overflow hidden - let it blend naturally */
 }
 
 .card-reflect video {
@@ -322,45 +322,26 @@ body {
   height: 280px;
   object-fit: cover;
   object-position: top;
-  filter: blur(15px) saturate(1.3) brightness(0.7);
+  filter: blur(12px) saturate(1.2) brightness(0.6);
 }
 
-/* Overlay gradient to fade reflection - works in ALL browsers */
+/* Gradient overlay to fade the bottom edge */
 .reflect-fade {
   position: absolute;
   top: 0;
-  left: -20px;
-  right: -20px;
-  bottom: -50px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  /* Gradient goes from transparent (shows video) to bg color (hides edge) */
+  /* Note: because container is flipped, "top" visually appears at bottom */
   background: linear-gradient(
-    to bottom,
+    to top,
     transparent 0%,
-    transparent 10%,
-    rgba(0, 0, 0, 0.2) 30%,
-    rgba(0, 0, 0, 0.5) 50%,
-    rgba(0, 0, 0, 0.8) 70%,
-    var(--bg-primary) 90%,
-    var(--bg-primary) 100%
+    transparent 40%,
+    rgba(0,0,0,0.3) 60%,
+    rgba(0,0,0,0.6) 75%,
+    var(--bg-primary) 95%
   );
-  pointer-events: none;
-}
-
-/* Side fade overlay */
-.card-reflect::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -20px;
-  right: -20px;
-  bottom: -20px;
-  background: linear-gradient(
-    to right,
-    var(--bg-primary) 0%,
-    transparent 15%,
-    transparent 85%,
-    var(--bg-primary) 100%
-  );
-  z-index: 2;
   pointer-events: none;
 }
 
