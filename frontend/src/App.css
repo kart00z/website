@@ -275,60 +275,66 @@ body {
   opacity: 0.4;
 }
 
-/* Reflection - positioned below card */
+/* Reflection - positioned below card on glass surface */
 .card-reflection {
   position: absolute;
   top: 100%;
   left: 0;
   width: 100%;
-  height: 60%;
-  margin-top: 6px;
+  height: 50%;
+  margin-top: 10px;
   border-radius: 12px;
   overflow: hidden;
   pointer-events: none;
-  transform: scaleY(-1) perspective(800px) rotateX(15deg);
+  transform: scaleY(-1) perspective(800px) rotateX(25deg);
   transform-origin: top center;
-  opacity: 0;
+  /* Default visible for testing */
+  opacity: 0.5;
   transition: opacity 0.8s ease;
 }
 
 .card-reflection video {
   width: 100%;
-  height: 170%;
+  height: 200%;
   object-fit: cover;
-  filter: blur(1.5px) brightness(0.45) saturate(0.6);
+  filter: blur(2px) brightness(0.5) saturate(0.5);
 }
 
-/* Reflection gradient fade - fades out towards bottom */
+/* Glass surface effect - gradient fade out */
 .card-reflection::after {
   content: '';
   position: absolute;
   inset: 0;
   background: linear-gradient(
     to top,
-    var(--bg-primary) 0%,
-    rgba(0,0,0,0.95) 15%,
-    rgba(0,0,0,0.7) 40%,
-    rgba(0,0,0,0.4) 70%,
+    var(--bg-primary) 5%,
+    rgba(0,0,0,0.85) 25%,
+    rgba(0,0,0,0.5) 50%,
+    rgba(0,0,0,0.2) 75%,
     transparent 100%
   );
   pointer-events: none;
 }
 
-/* Frosted glass surface effect on reflection */
+/* Frosted glass shine on reflection surface */
 .card-reflection::before {
   content: '';
   position: absolute;
-  inset: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 40%;
   background: linear-gradient(
     180deg,
-    rgba(255,255,255,0.08) 0%,
-    rgba(255,255,255,0.03) 30%,
+    rgba(255,255,255,0.15) 0%,
+    rgba(255,255,255,0.08) 30%,
+    rgba(255,255,255,0.02) 60%,
     transparent 100%
   );
-  backdrop-filter: blur(4px) saturate(1.2);
-  -webkit-backdrop-filter: blur(4px) saturate(1.2);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
   z-index: 1;
+  border-radius: 12px 12px 0 0;
 }
 
 /* ============================================
