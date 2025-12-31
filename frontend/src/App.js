@@ -7,47 +7,31 @@ function App() {
   const [activeSection, setActiveSection] = useState('intro');
   const [theme, setTheme] = useState('dark');
 
-  // Video playback - lighter sync for iOS performance
+  // Simple video playback - minimal sync for performance
   useEffect(() => {
-    // Check if iOS
-    const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
-    
     const playVideos = () => {
-      document.querySelectorAll('.gallery-video-main').forEach(mainVideo => {
-        if (mainVideo.paused) mainVideo.play().catch(() => {});
-        if (mainVideo.ended) {
-          mainVideo.currentTime = 0;
-          mainVideo.play().catch(() => {});
+      document.querySelectorAll('.gallery-video-main, .gallery-video-reflect').forEach(video => {
+        if (video.paused) video.play().catch(() => {});
+        if (video.ended) {
+          video.currentTime = 0;
+          video.play().catch(() => {});
         }
       });
-      
-      // Only sync reflections on non-iOS (too heavy for iOS)
-      if (!isIOS) {
-        const cards = document.querySelectorAll('.gallery-card');
-        cards.forEach(card => {
-          const mainVideo = card.querySelector('.gallery-video-main');
-          const reflectVideo = card.querySelector('.gallery-video-reflect');
-          if (mainVideo && reflectVideo) {
-            reflectVideo.currentTime = mainVideo.currentTime;
-            if (reflectVideo.paused) reflectVideo.play().catch(() => {});
-          }
-        });
-      }
     };
 
-    // Less frequent checking - 500ms
-    const interval = setInterval(playVideos, 500);
+    // Less frequent - every 1 second
+    const interval = setInterval(playVideos, 1000);
     
-    const events = ['click', 'touchstart'];
-    events.forEach(e => document.addEventListener(e, playVideos, { passive: true }));
-    
+    document.addEventListener('click', playVideos, { passive: true });
+    document.addEventListener('touchstart', playVideos, { passive: true });
     document.addEventListener('visibilitychange', () => {
       if (!document.hidden) playVideos();
     });
 
     return () => {
       clearInterval(interval);
-      events.forEach(e => document.removeEventListener(e, playVideos));
+      document.removeEventListener('click', playVideos);
+      document.removeEventListener('touchstart', playVideos);
     };
   }, []);
 
