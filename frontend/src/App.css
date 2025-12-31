@@ -303,19 +303,23 @@ body {
 }
 
 /* ============================================
-   GALLERY REFLECTION - Ultra diffused, seamless
+   GALLERY REFLECTION - Ultra diffused, ALL edges soft
    ============================================ */
 .card-reflect {
   position: absolute;
-  top: 290px;
+  top: 295px;
   left: -40%;
   width: 180%;
-  height: 80px;
+  height: 100px;
   pointer-events: none;
-  opacity: 0.5;
-  /* Very gradual fade in all directions */
-  -webkit-mask-image: radial-gradient(ellipse 40% 70% at center 20%, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.4) 30%, rgba(0,0,0,0.1) 60%, transparent 100%);
-  mask-image: radial-gradient(ellipse 40% 70% at center 20%, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.4) 30%, rgba(0,0,0,0.1) 60%, transparent 100%);
+  opacity: 0.45;
+  /* Fade ALL edges including top - no hard lines anywhere */
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.5) 20%, rgba(0,0,0,0.3) 50%, transparent 100%),
+                      linear-gradient(to right, transparent 0%, black 20%, black 80%, transparent 100%);
+  -webkit-mask-composite: source-in;
+  mask-image: linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.5) 20%, rgba(0,0,0,0.3) 50%, transparent 100%),
+              linear-gradient(to right, transparent 0%, black 20%, black 80%, transparent 100%);
+  mask-composite: intersect;
 }
 
 .card-reflect video {
@@ -324,8 +328,8 @@ body {
   object-fit: cover;
   object-position: bottom;
   transform: scaleY(-1);
-  /* Extreme blur for seamless diffusion */
-  filter: blur(50px) saturate(1.6) brightness(0.5);
+  /* Heavy blur to hide any remaining edges */
+  filter: blur(45px) saturate(1.5) brightness(0.5);
 }
 
 .reflect-fade {
