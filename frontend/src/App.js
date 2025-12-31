@@ -229,22 +229,16 @@ function App() {
                   "https://customer-assets.emergentagent.com/job_f89c7579-45ce-4797-86a4-864b9c1026f7/artifacts/imquazrs_copy_093AB1A6-6CFB-4EDD-8180-3FF7CF4904D0.MOV"
                 ].map((src, index) => (
                   <div key={index} className={`gallery-card gallery-card-${index}`} data-index={index}>
-                    <div className="card-video-wrapper">
-                      <video autoPlay loop muted playsInline preload="auto">
+                    <div className="card-inner">
+                      <video autoPlay loop muted playsInline preload="auto" className="card-video">
                         <source src={src} type="video/mp4" />
                       </video>
-                    </div>
-                    <div className="card-reflection">
-                      <div className="reflection-video-container">
-                        <video autoPlay loop muted playsInline preload="auto">
-                          <source src={src} type="video/mp4" />
-                        </video>
-                      </div>
-                      <div className="reflection-gradient"></div>
                     </div>
                   </div>
                 ))}
               </div>
+              {/* Glass floor for reflections */}
+              <div className="gallery-floor"></div>
             </div>
           </div>
         </section>
