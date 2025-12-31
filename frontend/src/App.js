@@ -136,9 +136,15 @@ function App() {
     }
   };
 
+  // Theme styles for iOS Safari compatibility (inline styles as fallback)
+  const themeStyles = {
+    background: theme === 'dark' ? '#000000' : '#ffffff',
+    color: theme === 'dark' ? '#ffffff' : '#000000',
+  };
+
   return (
     <BrowserRouter>
-      <div className="App">
+      <div className="App" style={themeStyles} data-theme={theme}>
         {/* Theme Toggle - Sun/Moon */}
         <button 
           type="button"
