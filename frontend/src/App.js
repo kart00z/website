@@ -120,7 +120,9 @@ function App() {
     document.body.style.display = '';
   }, [theme]);
 
-  const toggleTheme = () => {
+  const toggleTheme = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
     setTheme(prev => prev === 'dark' ? 'light' : 'dark');
   };
 
