@@ -380,15 +380,23 @@ body {
   filter: none;
 }
 .gallery-card.pos-2 .card-reflection {
-  opacity: 0.45;
+  opacity: 0.55;
 }
 .gallery-card.pos-2 .card-video-wrapper::after {
   background: radial-gradient(
     ellipse at center,
-    transparent 60%,
-    rgba(0,0,0,0.15) 80%,
-    rgba(0,0,0,0.4) 95%,
+    transparent 55%,
+    rgba(0,0,0,0.1) 75%,
+    rgba(0,0,0,0.35) 90%,
     var(--bg-primary) 100%
+  );
+}
+.gallery-card.pos-2 .card-reflection::before {
+  background: linear-gradient(
+    180deg,
+    rgba(255,255,255,0.12) 0%,
+    rgba(255,255,255,0.05) 40%,
+    transparent 100%
   );
 }
 
