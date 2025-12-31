@@ -353,8 +353,10 @@ function App() {
                     />
                   </div>
                   <div className="portfolio-info">
-                    <h3 className="portfolio-project-title">Creative Work</h3>
-                    <p className="portfolio-project-role">AI Video Art</p>
+                    <h3 className="portfolio-project-title">GenAI Vancouver Show</h3>
+                    <div className="portfolio-tools">
+                      <span className="tool-tag tool-luma">Luma Ray3 Reasoning</span>
+                    </div>
                   </div>
                 </div>
 
@@ -370,8 +372,12 @@ function App() {
                     />
                   </div>
                   <div className="portfolio-info">
-                    <h3 className="portfolio-project-title">Visual Exploration</h3>
-                    <p className="portfolio-project-role">Experimental Media</p>
+                    <h3 className="portfolio-project-title">Diwali 2025 GenAI Promo</h3>
+                    <div className="portfolio-tools">
+                      <span className="tool-tag tool-kling">Kling 2.5</span>
+                      <span className="tool-tag tool-minimax">Minimax</span>
+                      <span className="tool-tag tool-veo">Veo 3</span>
+                    </div>
                   </div>
                 </div>
 
@@ -387,8 +393,12 @@ function App() {
                     />
                   </div>
                   <div className="portfolio-info">
-                    <h3 className="portfolio-project-title">Motion Design</h3>
-                    <p className="portfolio-project-role">Digital Art</p>
+                    <h3 className="portfolio-project-title">Diwali 2025 Teaser</h3>
+                    <div className="portfolio-tools">
+                      <span className="tool-tag tool-kling">Kling 2.5</span>
+                      <span className="tool-tag tool-minimax">Minimax</span>
+                      <span className="tool-tag tool-luma">Ray 3</span>
+                    </div>
                   </div>
                 </div>
 
@@ -404,8 +414,12 @@ function App() {
                     />
                   </div>
                   <div className="portfolio-info">
-                    <h3 className="portfolio-project-title">Generative Art</h3>
-                    <p className="portfolio-project-role">Computational Media</p>
+                    <h3 className="portfolio-project-title">The Finale GenAI Promo</h3>
+                    <div className="portfolio-tools">
+                      <span className="tool-tag tool-luma">Luma Ray 3 Reasoning</span>
+                      <span className="tool-tag tool-runway">Runway Gen 4</span>
+                      <span className="tool-tag tool-runway">Runway Aleph</span>
+                    </div>
                   </div>
                 </div>
 
@@ -421,8 +435,11 @@ function App() {
                     />
                   </div>
                   <div className="portfolio-info">
-                    <h3 className="portfolio-project-title">Immersive Experience</h3>
-                    <p className="portfolio-project-role">Interactive Media</p>
+                    <h3 className="portfolio-project-title">Some Experiments</h3>
+                    <div className="portfolio-tools">
+                      <span className="tool-tag tool-runway">Runway Gen 4.5</span>
+                      <span className="tool-tag tool-luma">Luma Ray 3</span>
+                    </div>
                   </div>
                 </div>
 
