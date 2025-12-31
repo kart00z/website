@@ -355,7 +355,8 @@ function App() {
                   <div className="portfolio-info">
                     <h3 className="portfolio-project-title">GenAI Vancouver Show</h3>
                     <div className="portfolio-tools">
-                      <span className="tool-tag tool-luma">Luma Ray3 Reasoning</span>
+                      <img src="https://customer-assets.emergentagent.com/job_glassmorphfolio-1/artifacts/045o6vhn_luma-labs-logo.webp" alt="Luma" className="tool-logo" />
+                      <span className="tool-text">Ray3 Reasoning</span>
                     </div>
                   </div>
                 </div>
@@ -374,9 +375,9 @@ function App() {
                   <div className="portfolio-info">
                     <h3 className="portfolio-project-title">Diwali 2025 GenAI Promo</h3>
                     <div className="portfolio-tools">
-                      <span className="tool-tag tool-kling">Kling 2.5</span>
-                      <span className="tool-tag tool-minimax">Minimax</span>
-                      <span className="tool-tag tool-veo">Veo 3</span>
+                      <img src="https://customer-assets.emergentagent.com/job_glassmorphfolio-1/artifacts/5g0tep9u_kling-color.png" alt="Kling" className="tool-logo" />
+                      <img src="https://customer-assets.emergentagent.com/job_glassmorphfolio-1/artifacts/9bmk51w2_MiniMax.png" alt="Minimax" className="tool-logo" />
+                      <img src="https://customer-assets.emergentagent.com/job_glassmorphfolio-1/artifacts/ubqa9s1p_sadawdawd.png" alt="Veo 3" className="tool-logo" />
                     </div>
                   </div>
                 </div>
@@ -395,9 +396,9 @@ function App() {
                   <div className="portfolio-info">
                     <h3 className="portfolio-project-title">Diwali 2025 Teaser</h3>
                     <div className="portfolio-tools">
-                      <span className="tool-tag tool-kling">Kling 2.5</span>
-                      <span className="tool-tag tool-minimax">Minimax</span>
-                      <span className="tool-tag tool-luma">Ray 3</span>
+                      <img src="https://customer-assets.emergentagent.com/job_glassmorphfolio-1/artifacts/5g0tep9u_kling-color.png" alt="Kling" className="tool-logo" />
+                      <img src="https://customer-assets.emergentagent.com/job_glassmorphfolio-1/artifacts/9bmk51w2_MiniMax.png" alt="Minimax" className="tool-logo" />
+                      <img src="https://customer-assets.emergentagent.com/job_glassmorphfolio-1/artifacts/045o6vhn_luma-labs-logo.webp" alt="Luma Ray 3" className="tool-logo" />
                     </div>
                   </div>
                 </div>
@@ -416,9 +417,8 @@ function App() {
                   <div className="portfolio-info">
                     <h3 className="portfolio-project-title">The Finale GenAI Promo</h3>
                     <div className="portfolio-tools">
-                      <span className="tool-tag tool-luma">Luma Ray 3 Reasoning</span>
-                      <span className="tool-tag tool-runway">Runway Gen 4</span>
-                      <span className="tool-tag tool-runway">Runway Aleph</span>
+                      <img src="https://customer-assets.emergentagent.com/job_glassmorphfolio-1/artifacts/045o6vhn_luma-labs-logo.webp" alt="Luma" className="tool-logo" />
+                      <img src="https://customer-assets.emergentagent.com/job_glassmorphfolio-1/artifacts/g26spe0b_Runway.webp" alt="Runway" className="tool-logo" />
                     </div>
                   </div>
                 </div>
@@ -437,8 +437,8 @@ function App() {
                   <div className="portfolio-info">
                     <h3 className="portfolio-project-title">Some Experiments</h3>
                     <div className="portfolio-tools">
-                      <span className="tool-tag tool-runway">Runway Gen 4.5</span>
-                      <span className="tool-tag tool-luma">Luma Ray 3</span>
+                      <img src="https://customer-assets.emergentagent.com/job_glassmorphfolio-1/artifacts/g26spe0b_Runway.webp" alt="Runway" className="tool-logo" />
+                      <img src="https://customer-assets.emergentagent.com/job_glassmorphfolio-1/artifacts/045o6vhn_luma-labs-logo.webp" alt="Luma" className="tool-logo" />
                     </div>
                   </div>
                 </div>
