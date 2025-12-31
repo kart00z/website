@@ -6,20 +6,31 @@ function App() {
   const [scrollRotation, setScrollRotation] = useState(0);
   const [activeSection, setActiveSection] = useState('intro');
   const [theme, setTheme] = useState('dark');
+  const [videosStarted, setVideosStarted] = useState(false);
 
-  // Video playback - simpler but more reliable approach
+  // Video playback handler
   useEffect(() => {
     const playVideo = async (video) => {
       try {
-        // Reset to start if ended
-        if (video.ended || video.currentTime >= video.duration - 0.1) {
-          video.currentTime = 0;
-        }
-        // Try to play
+        if (video.ended) video.currentTime = 0;
         await video.play();
+        return true;
       } catch (e) {
-        // If autoplay blocked, we'll retry on user interaction
-        console.log('Video play failed, will retry on interaction');
+        return false;
+      }
+    };
+
+    const startAllVideos = async () => {
+      const galleryVideos = document.querySelectorAll('.gallery-video-main, .gallery-video-reflect');
+      let allPlaying = true;
+      
+      for (const video of galleryVideos) {
+        const success = await playVideo(video);
+        if (!success) allPlaying = false;
+      }
+      
+      if (allPlaying) {
+        setVideosStarted(true);
       }
     };
 
@@ -33,51 +44,44 @@ function App() {
     };
 
     // Set up video event handlers
-    const setupVideo = (video) => {
+    const galleryVideos = document.querySelectorAll('.gallery-video-main, .gallery-video-reflect');
+    galleryVideos.forEach(video => {
       video.addEventListener('ended', () => {
         video.currentTime = 0;
         playVideo(video);
       });
-      
       video.addEventListener('pause', () => {
-        // Only restart if it wasn't intentionally paused by user
-        setTimeout(() => {
-          if (video.paused && !video.ended) {
-            playVideo(video);
-          }
-        }, 100);
+        setTimeout(() => playVideo(video), 50);
       });
-
-      video.addEventListener('loadeddata', () => {
-        playVideo(video);
-      });
-
-      // Try to play immediately
-      playVideo(video);
-    };
-
-    // Initialize all gallery videos
-    const galleryVideos = document.querySelectorAll('.gallery-video-main, .gallery-video-reflect');
-    galleryVideos.forEach(setupVideo);
-
-    // Check periodically
-    const interval = setInterval(keepVideosPlaying, 1000);
-
-    // User interaction triggers
-    const handleInteraction = () => {
-      keepVideosPlaying();
-    };
-    
-    document.addEventListener('click', handleInteraction, { once: false });
-    document.addEventListener('touchstart', handleInteraction, { once: false });
-    
-    // When page becomes visible again
-    document.addEventListener('visibilitychange', () => {
-      if (!document.hidden) {
-        keepVideosPlaying();
-      }
+      video.addEventListener('loadeddata', () => playVideo(video));
     });
 
+    // Try to start videos immediately
+    startAllVideos();
+
+    // Keep checking
+    const interval = setInterval(keepVideosPlaying, 500);
+
+    // User interaction - critical for Firefox
+    const handleInteraction = () => {
+      startAllVideos();
+    };
+    
+    document.addEventListener('click', handleInteraction);
+    document.addEventListener('touchstart', handleInteraction);
+    document.addEventListener('keydown', handleInteraction, { once: true });
+    document.addEventListener('scroll', handleInteraction, { once: true });
+    
+    document.addEventListener('visibilitychange', () => {
+      if (!document.hidden) startAllVideos();
+    });
+
+    return () => {
+      clearInterval(interval);
+      document.removeEventListener('click', handleInteraction);
+      document.removeEventListener('touchstart', handleInteraction);
+    };
+  }, []);
     return () => {
       clearInterval(interval);
       document.removeEventListener('click', handleInteraction);
