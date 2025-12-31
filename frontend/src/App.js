@@ -7,88 +7,81 @@ function App() {
   const [activeSection, setActiveSection] = useState('intro');
   const [theme, setTheme] = useState('dark');
 
-  // ULTRA AGGRESSIVE video playback - never stop
+  // Video playback - simpler but more reliable approach
   useEffect(() => {
-    let animationId;
-    
-    const forcePlayGalleryVideos = () => {
+    const playVideo = async (video) => {
+      try {
+        // Reset to start if ended
+        if (video.ended || video.currentTime >= video.duration - 0.1) {
+          video.currentTime = 0;
+        }
+        // Try to play
+        await video.play();
+      } catch (e) {
+        // If autoplay blocked, we'll retry on user interaction
+        console.log('Video play failed, will retry on interaction');
+      }
+    };
+
+    const keepVideosPlaying = () => {
       const galleryVideos = document.querySelectorAll('.gallery-video-main, .gallery-video-reflect');
       galleryVideos.forEach(video => {
-        // Always try to play if paused
-        if (video.paused) {
-          video.play().catch(() => {});
-        }
-        
-        // Check if ended and restart
-        if (video.ended) {
-          video.currentTime = 0;
-          video.play().catch(() => {});
-        }
-        
-        // Detect stuck video (not progressing)
-        const lastTime = parseFloat(video.dataset.lastTime) || 0;
-        const lastCheck = parseFloat(video.dataset.lastCheck) || 0;
-        const now = Date.now();
-        
-        // If 1 second has passed and time hasn't changed, video is stuck
-        if (now - lastCheck > 1000) {
-          if (Math.abs(video.currentTime - lastTime) < 0.1 && video.currentTime > 0) {
-            video.currentTime = 0;
-            video.play().catch(() => {});
-          }
-          video.dataset.lastTime = video.currentTime;
-          video.dataset.lastCheck = now;
+        if (video.paused || video.ended) {
+          playVideo(video);
         }
       });
-      
-      // Keep checking with requestAnimationFrame
-      animationId = requestAnimationFrame(forcePlayGalleryVideos);
     };
-    
-    // Also add event listeners to each video
-    const galleryVideos = document.querySelectorAll('.gallery-video-main, .gallery-video-reflect');
-    galleryVideos.forEach(video => {
-      // Restart on pause
-      video.addEventListener('pause', () => {
-        setTimeout(() => video.play().catch(() => {}), 100);
-      });
-      // Restart on ended
+
+    // Set up video event handlers
+    const setupVideo = (video) => {
       video.addEventListener('ended', () => {
         video.currentTime = 0;
-        video.play().catch(() => {});
+        playVideo(video);
       });
-      // Restart on error
-      video.addEventListener('error', () => {
+      
+      video.addEventListener('pause', () => {
+        // Only restart if it wasn't intentionally paused by user
         setTimeout(() => {
-          video.load();
-          video.play().catch(() => {});
-        }, 500);
+          if (video.paused && !video.ended) {
+            playVideo(video);
+          }
+        }, 100);
       });
-      // Restart on stall
-      video.addEventListener('stalled', () => {
-        video.play().catch(() => {});
+
+      video.addEventListener('loadeddata', () => {
+        playVideo(video);
       });
-    });
-    
-    // Start the animation frame loop
-    animationId = requestAnimationFrame(forcePlayGalleryVideos);
-    
-    // Also force play on interactions
-    const forcePlay = () => {
-      galleryVideos.forEach(video => {
-        if (video.paused) video.play().catch(() => {});
-      });
+
+      // Try to play immediately
+      playVideo(video);
     };
-    document.addEventListener('click', forcePlay);
-    document.addEventListener('touchstart', forcePlay);
+
+    // Initialize all gallery videos
+    const galleryVideos = document.querySelectorAll('.gallery-video-main, .gallery-video-reflect');
+    galleryVideos.forEach(setupVideo);
+
+    // Check periodically
+    const interval = setInterval(keepVideosPlaying, 1000);
+
+    // User interaction triggers
+    const handleInteraction = () => {
+      keepVideosPlaying();
+    };
+    
+    document.addEventListener('click', handleInteraction, { once: false });
+    document.addEventListener('touchstart', handleInteraction, { once: false });
+    
+    // When page becomes visible again
     document.addEventListener('visibilitychange', () => {
-      if (!document.hidden) forcePlay();
+      if (!document.hidden) {
+        keepVideosPlaying();
+      }
     });
 
     return () => {
-      cancelAnimationFrame(animationId);
-      document.removeEventListener('click', forcePlay);
-      document.removeEventListener('touchstart', forcePlay);
+      clearInterval(interval);
+      document.removeEventListener('click', handleInteraction);
+      document.removeEventListener('touchstart', handleInteraction);
     };
   }, []);
 
