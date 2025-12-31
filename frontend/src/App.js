@@ -7,6 +7,38 @@ function App() {
   const [activeSection, setActiveSection] = useState('intro');
   const [theme, setTheme] = useState('dark');
 
+  // Force all videos to play
+  useEffect(() => {
+    const playAllVideos = () => {
+      const videos = document.querySelectorAll('video');
+      videos.forEach(video => {
+        video.play().catch(() => {
+          // Retry on user interaction
+          document.addEventListener('click', () => video.play(), { once: true });
+        });
+      });
+    };
+
+    // Play videos after a short delay to ensure they're loaded
+    const timer = setTimeout(playAllVideos, 1000);
+    
+    // Also try to play on any user interaction
+    const handleInteraction = () => {
+      playAllVideos();
+      document.removeEventListener('click', handleInteraction);
+      document.removeEventListener('touchstart', handleInteraction);
+    };
+    
+    document.addEventListener('click', handleInteraction);
+    document.addEventListener('touchstart', handleInteraction);
+
+    return () => {
+      clearTimeout(timer);
+      document.removeEventListener('click', handleInteraction);
+      document.removeEventListener('touchstart', handleInteraction);
+    };
+  }, []);
+
   useEffect(() => {
     const handleScroll = () => {
       const scrolled = window.scrollY;
