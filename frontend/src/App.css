@@ -644,6 +644,7 @@ body[data-theme="dark"] .App {
   color: var(--text-primary);
   margin-bottom: 1rem;
   letter-spacing: -0.01em;
+  transition: color 0.3s ease;
 }
 
 .vita-text {
@@ -652,12 +653,15 @@ body[data-theme="dark"] .App {
   line-height: 1.7;
   margin-bottom: 0.75rem;
   font-weight: 300;
+  transition: color 0.3s ease;
 }
 
 .highlight-achievement {
   color: var(--text-primary);
   font-weight: 400;
   font-size: 1.25rem;
+  transition: color 0.3s ease;
+}
 }
 
 /* Experience Entries */
