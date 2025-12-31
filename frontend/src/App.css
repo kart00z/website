@@ -290,8 +290,8 @@ body {
   z-index: 1;
 }
 
-.gallery-video.position-0::before {
-  opacity: 0.12;
+.gallery-video.position-0 .video-reflection {
+  opacity: 0.08;
 }
 
 /* Position 1: Left */
@@ -301,8 +301,8 @@ body {
   z-index: 2;
 }
 
-.gallery-video.position-1::before {
-  opacity: 0.18;
+.gallery-video.position-1 .video-reflection {
+  opacity: 0.15;
 }
 
 /* Position 2: Center (active) */
@@ -312,8 +312,8 @@ body {
   z-index: 5;
 }
 
-.gallery-video.position-2::before {
-  opacity: 0.3;
+.gallery-video.position-2 .video-reflection {
+  opacity: 0.25;
 }
 
 /* Position 3: Right */
@@ -323,8 +323,8 @@ body {
   z-index: 2;
 }
 
-.gallery-video.position-3::before {
-  opacity: 0.18;
+.gallery-video.position-3 .video-reflection {
+  opacity: 0.15;
 }
 
 /* Position 4: Far right */
@@ -334,18 +334,18 @@ body {
   z-index: 1;
 }
 
-.gallery-video.position-4::before {
-  opacity: 0.12;
+.gallery-video.position-4 .video-reflection {
+  opacity: 0.08;
 }
 
 /* Blur on non-center videos */
-.gallery-video:not(.active) video {
+.gallery-video:not(.active) video.main-video {
   filter: blur(4px);
   opacity: 0.8;
 }
 
 /* Active video - crystal clear */
-.gallery-video.active video {
+.gallery-video.active video.main-video {
   filter: none !important;
   opacity: 1 !important;
 }
