@@ -7,10 +7,10 @@ function App() {
   const [activeSection, setActiveSection] = useState('intro');
   const [theme, setTheme] = useState('dark');
 
-  // Simple video playback - minimal sync for performance
+  // Simple video playback - only main videos now
   useEffect(() => {
     const playVideos = () => {
-      document.querySelectorAll('.gallery-video-main, .gallery-video-reflect').forEach(video => {
+      document.querySelectorAll('.gallery-video-main').forEach(video => {
         if (video.paused) video.play().catch(() => {});
         if (video.ended) {
           video.currentTime = 0;
@@ -19,7 +19,6 @@ function App() {
       });
     };
 
-    // Less frequent - every 1 second
     const interval = setInterval(playVideos, 1000);
     
     document.addEventListener('click', playVideos, { passive: true });
