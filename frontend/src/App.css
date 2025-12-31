@@ -303,19 +303,19 @@ body {
 }
 
 /* ============================================
-   GALLERY REFLECTION - Gradual fade from all sides
+   GALLERY REFLECTION - Lighter for better performance
    ============================================ */
 .card-reflect {
   position: absolute;
   top: 295px;
-  left: -20%;
-  width: 140%;
-  height: 120px;
+  left: -15%;
+  width: 130%;
+  height: 100px;
   pointer-events: none;
-  opacity: 0.4;
-  /* Radial gradient - fades gradually from center outward in all directions */
-  -webkit-mask-image: radial-gradient(ellipse 50% 40% at center 10%, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.3) 40%, rgba(0,0,0,0.1) 70%, transparent 100%);
-  mask-image: radial-gradient(ellipse 50% 40% at center 10%, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.3) 40%, rgba(0,0,0,0.1) 70%, transparent 100%);
+  opacity: 0.55;
+  /* Simpler gradient for better performance */
+  -webkit-mask-image: radial-gradient(ellipse 55% 50% at center 15%, black 0%, rgba(0,0,0,0.4) 50%, transparent 100%);
+  mask-image: radial-gradient(ellipse 55% 50% at center 15%, black 0%, rgba(0,0,0,0.4) 50%, transparent 100%);
 }
 
 .card-reflect video {
@@ -324,8 +324,8 @@ body {
   object-fit: cover;
   object-position: bottom;
   transform: scaleY(-1);
-  /* Heavy blur */
-  filter: blur(55px) saturate(1.3) brightness(0.45);
+  /* Reduced blur for better performance */
+  filter: blur(35px) saturate(1.2) brightness(0.5);
 }
 
 .reflect-fade {
