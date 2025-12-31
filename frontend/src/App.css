@@ -314,14 +314,17 @@ body {
    Position 4: Far right (hidden mostly)
    ============================================ */
 
-/* Far Left - rotate away to avoid overlap */
+/* Far Left - rotate away */
 .gallery-card.pos-0 {
   transform: translateX(-240px) translateZ(-400px) rotateY(60deg) scale(0.55);
   opacity: 0.2;
   z-index: 1;
 }
-.gallery-card.pos-0 .card-video {
+.gallery-card.pos-0 .card-main video {
   filter: brightness(0.4);
+}
+.gallery-card.pos-0 .card-reflect {
+  display: none;
 }
 
 /* Left */
@@ -330,8 +333,11 @@ body {
   opacity: 0.7;
   z-index: 2;
 }
-.gallery-card.pos-1 .card-video {
+.gallery-card.pos-1 .card-main video {
   filter: brightness(0.7);
+}
+.gallery-card.pos-1 .card-reflect {
+  opacity: 0.5;
 }
 
 /* Center (Active) */
@@ -340,8 +346,14 @@ body {
   opacity: 1;
   z-index: 5;
 }
-.gallery-card.pos-2 .card-video {
+.gallery-card.pos-2 .card-main video {
   filter: none;
+}
+.gallery-card.pos-2 .card-reflect {
+  opacity: 1;
+}
+.gallery-card.pos-2 .card-reflect video {
+  filter: blur(6px) saturate(1.4) brightness(0.85);
 }
 
 /* Right */
@@ -350,8 +362,11 @@ body {
   opacity: 0.7;
   z-index: 2;
 }
-.gallery-card.pos-3 .card-video {
+.gallery-card.pos-3 .card-main video {
   filter: brightness(0.7);
+}
+.gallery-card.pos-3 .card-reflect {
+  opacity: 0.5;
 }
 
 /* Far Right - rotate away */
@@ -360,8 +375,11 @@ body {
   opacity: 0.2;
   z-index: 1;
 }
-.gallery-card.pos-4 .card-video {
+.gallery-card.pos-4 .card-main video {
   filter: brightness(0.4);
+}
+.gallery-card.pos-4 .card-reflect {
+  display: none;
 }
 
 /* ============================================
