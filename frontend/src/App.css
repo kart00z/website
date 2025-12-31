@@ -669,6 +669,7 @@ body[data-theme="dark"] .App {
   margin-bottom: 1.5rem;
   padding-bottom: 1.5rem;
   border-bottom: 1px solid var(--glass-border);
+  transition: border-color 0.3s ease;
 }
 
 .experience-entry:last-child {
@@ -689,18 +690,21 @@ body[data-theme="dark"] .App {
   font-size: 1.1rem;
   font-weight: 500;
   color: var(--text-primary);
+  transition: color 0.3s ease;
 }
 
 .experience-company {
   font-size: 1rem;
   color: var(--text-secondary);
   font-weight: 300;
+  transition: color 0.3s ease;
 }
 
 .experience-company::before {
   content: "·";
   margin-right: 0.5rem;
   color: var(--text-tertiary);
+  transition: color 0.3s ease;
 }
 
 .experience-meta {
@@ -712,10 +716,12 @@ body[data-theme="dark"] .App {
   color: var(--text-tertiary);
   font-weight: 300;
   margin-bottom: 0.75rem;
+  transition: color 0.3s ease;
 }
 
 .meta-divider {
   color: var(--glass-border);
+  transition: color 0.3s ease;
 }
 
 .experience-entry .vita-text {
