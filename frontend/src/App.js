@@ -124,7 +124,13 @@ function App() {
   }, []);
 
   useEffect(() => {
+    // Update theme on both html and root for iOS Safari compatibility
     document.documentElement.setAttribute('data-theme', theme);
+    document.documentElement.style.colorScheme = theme;
+    // Force repaint on iOS Safari
+    document.body.style.display = 'none';
+    document.body.offsetHeight; // Trigger reflow
+    document.body.style.display = '';
   }, [theme]);
 
   const toggleTheme = () => {
