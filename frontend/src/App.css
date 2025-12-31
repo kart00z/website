@@ -337,7 +337,7 @@ body {
   z-index: 1;
 }
 .gallery-card.pos-0 .card-video-wrapper video {
-  filter: blur(5px) brightness(0.5);
+  filter: blur(4px) brightness(0.5);
 }
 .gallery-card.pos-0 .card-reflection {
   display: none;
@@ -350,10 +350,10 @@ body {
   z-index: 2;
 }
 .gallery-card.pos-1 .card-video-wrapper video {
-  filter: blur(3px) brightness(0.7);
+  filter: blur(2px) brightness(0.75);
 }
 .gallery-card.pos-1 .card-reflection {
-  opacity: 0.4;
+  opacity: 0.5;
 }
 
 /* Center (Active) */
@@ -369,8 +369,7 @@ body {
   opacity: 1;
 }
 .gallery-card.pos-2 .card-reflection video {
-  filter: blur(10px) saturate(1.2) brightness(0.65);
-  opacity: 0.8;
+  filter: blur(6px) saturate(1.4) brightness(0.75);
 }
 
 /* Right */
@@ -380,10 +379,10 @@ body {
   z-index: 2;
 }
 .gallery-card.pos-3 .card-video-wrapper video {
-  filter: blur(3px) brightness(0.7);
+  filter: blur(2px) brightness(0.75);
 }
 .gallery-card.pos-3 .card-reflection {
-  opacity: 0.4;
+  opacity: 0.5;
 }
 
 /* Far Right - rotate away */
@@ -393,7 +392,7 @@ body {
   z-index: 1;
 }
 .gallery-card.pos-4 .card-video-wrapper video {
-  filter: blur(5px) brightness(0.5);
+  filter: blur(4px) brightness(0.5);
 }
 .gallery-card.pos-4 .card-reflection {
   display: none;
