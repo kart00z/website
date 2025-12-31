@@ -898,8 +898,7 @@ body[data-theme="dark"] .section-alt {
   box-shadow: 0 0 40px var(--glow-color);
 }
 
-.portfolio-image,
-.portfolio-video {
+.portfolio-image {
   width: 100%;
   height: auto;
   display: block;
