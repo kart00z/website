@@ -7,47 +7,47 @@ function App() {
   const [activeSection, setActiveSection] = useState('intro');
   const [theme, setTheme] = useState('dark');
 
-  // Video playback and sync for iOS
+  // Video playback - lighter sync for iOS performance
   useEffect(() => {
-    const syncVideos = () => {
-      const cards = document.querySelectorAll('.gallery-card');
-      cards.forEach(card => {
-        const mainVideo = card.querySelector('.gallery-video-main');
-        const reflectVideo = card.querySelector('.gallery-video-reflect');
-        
-        if (mainVideo && reflectVideo) {
-          // Always sync reflection to main video time
-          reflectVideo.currentTime = mainVideo.currentTime;
-          
-          // Play both if paused
-          if (mainVideo.paused) mainVideo.play().catch(() => {});
-          if (reflectVideo.paused) reflectVideo.play().catch(() => {});
-          
-          // Restart both if ended
-          if (mainVideo.ended) {
-            mainVideo.currentTime = 0;
-            reflectVideo.currentTime = 0;
-            mainVideo.play().catch(() => {});
-            reflectVideo.play().catch(() => {});
-          }
+    // Check if iOS
+    const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+    
+    const playVideos = () => {
+      document.querySelectorAll('.gallery-video-main').forEach(mainVideo => {
+        if (mainVideo.paused) mainVideo.play().catch(() => {});
+        if (mainVideo.ended) {
+          mainVideo.currentTime = 0;
+          mainVideo.play().catch(() => {});
         }
       });
+      
+      // Only sync reflections on non-iOS (too heavy for iOS)
+      if (!isIOS) {
+        const cards = document.querySelectorAll('.gallery-card');
+        cards.forEach(card => {
+          const mainVideo = card.querySelector('.gallery-video-main');
+          const reflectVideo = card.querySelector('.gallery-video-reflect');
+          if (mainVideo && reflectVideo) {
+            reflectVideo.currentTime = mainVideo.currentTime;
+            if (reflectVideo.paused) reflectVideo.play().catch(() => {});
+          }
+        });
+      }
     };
 
-    // Sync very frequently for iOS - every 100ms
-    const interval = setInterval(syncVideos, 100);
+    // Less frequent checking - 500ms
+    const interval = setInterval(playVideos, 500);
     
-    // User interactions
-    const events = ['click', 'touchstart', 'scroll'];
-    events.forEach(e => document.addEventListener(e, syncVideos, { passive: true }));
+    const events = ['click', 'touchstart'];
+    events.forEach(e => document.addEventListener(e, playVideos, { passive: true }));
     
     document.addEventListener('visibilitychange', () => {
-      if (!document.hidden) syncVideos();
+      if (!document.hidden) playVideos();
     });
 
     return () => {
       clearInterval(interval);
-      events.forEach(e => document.removeEventListener(e, syncVideos));
+      events.forEach(e => document.removeEventListener(e, playVideos));
     };
   }, []);
 
