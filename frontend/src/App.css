@@ -227,7 +227,7 @@ body {
 .gallery-stage {
   position: relative;
   width: 280px;
-  height: 480px;
+  height: 450px;
   perspective: 1200px;
   transform-style: preserve-3d;
 }
