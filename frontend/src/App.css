@@ -303,65 +303,38 @@ body {
 }
 
 /* ============================================
-   REFLECTION - Fades into background, no hard edges
+   REFLECTION - Heavily blurred ambient glow, no visible edges
    ============================================ */
 .card-reflect {
   position: absolute;
   top: 100%;
-  left: 0;
-  width: 100%;
-  height: 100px;
-  margin-top: 4px;
-  overflow: hidden;
+  left: -10%;
+  width: 120%;
+  height: 80px;
+  margin-top: 20px;
   pointer-events: none;
   transform: scaleY(-1);
-  border-radius: 0 0 16px 16px;
+  /* NO overflow hidden - let blur create soft edges naturally */
+  opacity: 0.6;
 }
 
 .card-reflect video {
   width: 100%;
-  height: 280px;
+  height: 200px;
   object-fit: cover;
   object-position: top;
-  filter: blur(12px) saturate(1.2) brightness(0.6);
+  /* VERY heavy blur - makes edges completely soft */
+  filter: blur(35px) saturate(1.3) brightness(0.5);
 }
 
-/* Inner fade - fades the top part */
+/* Hide the inner fade - not needed with heavy blur */
 .reflect-fade {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: linear-gradient(
-    to top,
-    transparent 0%,
-    transparent 50%,
-    rgba(0,0,0,0.5) 75%,
-    var(--bg-primary) 100%
-  );
-  pointer-events: none;
+  display: none;
 }
 
-/* This covers the hard bottom edge of the reflection */
+/* Remove the overlay - heavy blur handles everything */
 .gallery-card::after {
-  content: '';
-  position: absolute;
-  top: 100%;
-  left: -20px;
-  right: -20px;
-  height: 150px;
-  margin-top: 4px;
-  background: radial-gradient(
-    ellipse 70% 80% at center top,
-    transparent 0%,
-    transparent 40%,
-    rgba(0,0,0,0.3) 55%,
-    rgba(0,0,0,0.6) 70%,
-    var(--bg-primary) 90%
-  );
-  pointer-events: none;
-  z-index: 10;
+  display: none;
 }
 
 /* ============================================
