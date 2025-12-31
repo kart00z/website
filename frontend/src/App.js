@@ -111,9 +111,16 @@ function App() {
   }, []);
 
   useEffect(() => {
-    // Update theme on both html and root for iOS Safari compatibility
+    // Update theme on html, body, and App for iOS Safari compatibility
     document.documentElement.setAttribute('data-theme', theme);
+    document.body.setAttribute('data-theme', theme);
     document.documentElement.style.colorScheme = theme;
+    
+    // Also toggle class for iOS Safari fallback
+    document.documentElement.classList.remove('dark', 'light');
+    document.documentElement.classList.add(theme);
+    document.body.classList.remove('dark', 'light');
+    document.body.classList.add(theme);
   }, [theme]);
 
   const toggleTheme = (e) => {
