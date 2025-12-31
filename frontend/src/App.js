@@ -400,7 +400,7 @@ function App() {
         </section>
 
         {/* VITA Section - Moved Down */}
-        <section id="vita" className="section section-alt" data-testid="vita-section">
+        <section id="vita" className="section section-alt" style={{ background: theme === 'dark' ? '#0a0a0a' : '#f5f5f5' }} data-testid="vita-section">
           <div className="content-wrapper">
             <div className="vertical-line"></div>
             <div className="main-content">
