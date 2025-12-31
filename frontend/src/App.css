@@ -182,259 +182,302 @@ body {
   z-index: 2;
 }
 
-/* Rotating Video Gallery - Desktop: Right side, Mobile: Below */
-.video-gallery {
-  position: absolute;
-  right: 5%;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 400px;
-  height: 550px;
-  perspective: 2000px;
-  transform-style: preserve-3d;
-  z-index: 10;
+/* ============================================
+   INTRO SECTION - Side by Side Layout
+   ============================================ */
+.intro-section {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding: 8rem 2rem 4rem 2rem;
 }
 
-.gallery-video {
-  position: absolute;
-  width: 300px;
-  height: 300px;
-  border-radius: 20px;
-  overflow: visible;
-  transition: transform 3s cubic-bezier(0.16, 1, 0.3, 1), opacity 3s ease;
+.intro-layout {
+  max-width: 1400px;
+  width: 100%;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+}
+
+.intro-text-content {
+  display: flex;
+  gap: 2rem;
+}
+
+.intro-text-inner {
+  flex: 1;
+}
+
+/* ============================================
+   3D VIDEO GALLERY - Complete Rebuild
+   ============================================ */
+.gallery-container {
+  width: 100%;
+  height: 500px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.gallery-stage {
+  position: relative;
+  width: 280px;
+  height: 320px;
+  perspective: 1200px;
   transform-style: preserve-3d;
 }
 
-.gallery-video video.main-video {
+.gallery-card {
+  position: absolute;
+  width: 280px;
+  height: 280px;
+  left: 50%;
+  top: 0;
+  margin-left: -140px;
+  transform-style: preserve-3d;
+  transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  will-change: transform, opacity;
+}
+
+/* Video wrapper with edge fade */
+.card-video-wrapper {
+  width: 100%;
+  height: 100%;
+  border-radius: 16px;
+  overflow: hidden;
+  position: relative;
+  background: #000;
+}
+
+.card-video-wrapper video {
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
-  border-radius: 20px;
-  box-shadow: 0 40px 100px rgba(0, 0, 0, 0.9);
-  /* Subtle edge fade */
-  mask-image: radial-gradient(
-    ellipse at center,
-    black 40%,
-    rgba(0, 0, 0, 0.95) 65%,
-    rgba(0, 0, 0, 0.7) 85%,
-    rgba(0, 0, 0, 0.3) 96%,
-    transparent 100%
-  );
-  -webkit-mask-image: radial-gradient(
-    ellipse at center,
-    black 40%,
-    rgba(0, 0, 0, 0.95) 65%,
-    rgba(0, 0, 0, 0.7) 85%,
-    rgba(0, 0, 0, 0.3) 96%,
-    transparent 100%
-  );
+  transition: filter 0.5s ease;
 }
 
-/* VERY VISIBLE Reflection with strong perspective warp - ALWAYS below all cards */
-.video-reflection {
+/* Edge fade effect using mask */
+.card-video-wrapper::after {
+  content: '';
   position: absolute;
-  top: 105%;
+  inset: 0;
+  border-radius: 16px;
+  pointer-events: none;
+  box-shadow: 
+    inset 0 0 60px 30px var(--bg-primary),
+    inset 0 0 100px 50px rgba(0,0,0,0.3);
+  opacity: 0.6;
+}
+
+/* Reflection - positioned below card */
+.card-reflection {
+  position: absolute;
+  top: 100%;
   left: 0;
   width: 100%;
   height: 100%;
+  margin-top: 8px;
+  border-radius: 16px;
   overflow: hidden;
-  border-radius: 20px;
   pointer-events: none;
-  transform: scaleY(-1) perspective(400px) rotateX(8deg) scaleX(1.05);
+  transform: scaleY(-1) perspective(500px) rotateX(5deg);
+  transform-origin: top center;
   opacity: 0;
-  transition: opacity 3s ease, transform 3s cubic-bezier(0.16, 1, 0.3, 1);
-  z-index: -10 !important;
+  transition: opacity 0.8s ease;
 }
 
-/* Strong glossy surface effect */
-.video-reflection::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: linear-gradient(
-    to bottom,
-    rgba(255, 255, 255, 0.2) 0%,
-    rgba(255, 255, 255, 0.1) 5%,
-    rgba(255, 255, 255, 0.05) 15%,
-    rgba(0, 0, 0, 0) 35%,
-    rgba(0, 0, 0, 0.4) 65%,
-    #000000 100%
-  );
-  backdrop-filter: blur(20px) saturate(1.4) brightness(1.2);
-  -webkit-backdrop-filter: blur(20px) saturate(1.4) brightness(1.2);
-  z-index: 2;
-}
-
-.video-reflection video {
+.card-reflection video {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  border-radius: 20px;
-  filter: blur(1.5px) brightness(0.65);
-  opacity: 0.7;
-  mask-image: linear-gradient(
-    to bottom,
-    rgba(0, 0, 0, 0.9) 0%,
-    rgba(0, 0, 0, 0.7) 10%,
-    rgba(0, 0, 0, 0.5) 35%,
-    rgba(0, 0, 0, 0.2) 65%,
-    transparent 90%
-  );
-  -webkit-mask-image: linear-gradient(
-    to bottom,
-    rgba(0, 0, 0, 0.9) 0%,
-    rgba(0, 0, 0, 0.7) 10%,
-    rgba(0, 0, 0, 0.5) 35%,
-    rgba(0, 0, 0, 0.2) 65%,
-    transparent 90%
-  );
+  filter: blur(2px) brightness(0.4) saturate(0.8);
 }
 
-/* Position 0: Far left - rotate away MORE */
-.gallery-video.position-0 {
-  transform: translateX(-260px) translateY(55px) translateZ(-500px) scale(0.55) rotateY(65deg) rotateX(-6deg);
-  opacity: 0.08;
+/* Reflection gradient fade */
+.card-reflection::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    var(--bg-primary) 0%,
+    rgba(0,0,0,0.8) 30%,
+    rgba(0,0,0,0.5) 60%,
+    transparent 100%
+  );
+  pointer-events: none;
+}
+
+/* Frosted glass overlay on reflection */
+.card-reflection::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 1;
+  opacity: 0.7;
+}
+
+/* ============================================
+   CARD POSITIONS (5 cards carousel)
+   Position 0: Far left (hidden mostly)
+   Position 1: Left
+   Position 2: Center (active)
+   Position 3: Right
+   Position 4: Far right (hidden mostly)
+   ============================================ */
+
+/* Far Left - rotate away to avoid overlap */
+.gallery-card.pos-0 {
+  transform: translateX(-220px) translateZ(-350px) rotateY(55deg) scale(0.6);
+  opacity: 0.2;
   z-index: 1;
 }
-
-.gallery-video.position-0 .video-reflection {
-  opacity: 0.15;
-  transform: scaleY(-1) rotateX(-6deg) scaleX(0.95);
-  transform-origin: center top;
+.gallery-card.pos-0 .card-video-wrapper video {
+  filter: blur(4px) brightness(0.6);
+}
+.gallery-card.pos-0 .card-reflection {
+  opacity: 0;
 }
 
-.gallery-video.position-1 {
-  transform: translateX(-130px) translateY(28px) translateZ(-250px) scale(0.75) rotateY(35deg) rotateX(-4deg);
-  opacity: 0.5;
-  z-index: 3;
+/* Left */
+.gallery-card.pos-1 {
+  transform: translateX(-160px) translateZ(-150px) rotateY(30deg) scale(0.8);
+  opacity: 0.7;
+  z-index: 2;
+}
+.gallery-card.pos-1 .card-video-wrapper video {
+  filter: blur(3px) brightness(0.75);
+}
+.gallery-card.pos-1 .card-reflection {
+  opacity: 0.25;
 }
 
-.gallery-video.position-1 .video-reflection {
-  opacity: 0.32;
-  transform: scaleY(-1) rotateX(-4deg) scaleX(0.97);
-  transform-origin: center top;
-}
-
-.gallery-video.position-2 {
-  transform: translateX(0) translateY(0) translateZ(0) scale(1) rotateY(0deg) rotateX(0deg);
+/* Center (Active) */
+.gallery-card.pos-2 {
+  transform: translateX(0) translateZ(0) rotateY(0deg) scale(1);
   opacity: 1;
   z-index: 5;
 }
-
-.gallery-video.position-2 .video-reflection {
-  opacity: 0.5;
-  transform: scaleY(-1) rotateX(-2deg) scaleX(1);
-  transform-origin: center top;
+.gallery-card.pos-2 .card-video-wrapper video {
+  filter: none;
+}
+.gallery-card.pos-2 .card-reflection {
+  opacity: 0.4;
+}
+.gallery-card.pos-2 .card-video-wrapper::after {
+  opacity: 0.3;
 }
 
-.gallery-video.position-3 {
-  transform: translateX(130px) translateY(28px) translateZ(-250px) scale(0.75) rotateY(-35deg) rotateX(-4deg);
-  opacity: 0.5;
-  z-index: 3;
+/* Right */
+.gallery-card.pos-3 {
+  transform: translateX(160px) translateZ(-150px) rotateY(-30deg) scale(0.8);
+  opacity: 0.7;
+  z-index: 2;
+}
+.gallery-card.pos-3 .card-video-wrapper video {
+  filter: blur(3px) brightness(0.75);
+}
+.gallery-card.pos-3 .card-reflection {
+  opacity: 0.25;
 }
 
-.gallery-video.position-3 .video-reflection {
-  opacity: 0.32;
-  transform: scaleY(-1) rotateX(-4deg) scaleX(0.97);
-  transform-origin: center top;
-}
-
-.gallery-video.position-4 {
-  transform: translateX(260px) translateY(55px) translateZ(-500px) scale(0.55) rotateY(-65deg) rotateX(-6deg);
-  opacity: 0.08;
+/* Far Right - rotate away */
+.gallery-card.pos-4 {
+  transform: translateX(220px) translateZ(-350px) rotateY(-55deg) scale(0.6);
+  opacity: 0.2;
   z-index: 1;
 }
-
-.gallery-video.position-4 .video-reflection {
-  opacity: 0.15;
-  transform: scaleY(-1) rotateX(-6deg) scaleX(0.95);
-  transform-origin: center top;
+.gallery-card.pos-4 .card-video-wrapper video {
+  filter: blur(4px) brightness(0.6);
+}
+.gallery-card.pos-4 .card-reflection {
+  opacity: 0;
 }
 
-/* Blur on inactive */
-.gallery-video:not(.active) video.main-video {
-  filter: blur(5px) brightness(0.85);
-}
-
-.gallery-video.active video.main-video {
-  filter: none !important;
-}
-
-/* Even stronger reflection for active */
-.gallery-video.active .video-reflection::before {
-  backdrop-filter: blur(25px) saturate(1.5) brightness(1.25);
-  -webkit-backdrop-filter: blur(25px) saturate(1.5) brightness(1.25);
-}
-
-/* Tablet and below */
+/* ============================================
+   RESPONSIVE - Mobile/Tablet
+   ============================================ */
 @media (max-width: 1024px) {
-  .video-gallery {
-    position: relative;
-    right: auto;
-    top: auto;
-    transform: none;
-    width: 100%;
-    max-width: 600px;
-    height: 450px;
-    margin: 3rem auto 0;
-    z-index: 1;
+  .intro-layout {
+    grid-template-columns: 1fr;
+    gap: 3rem;
   }
   
-  .gallery-video {
+  .gallery-container {
+    height: 420px;
+  }
+  
+  .gallery-stage {
+    width: 240px;
+    height: 280px;
+  }
+  
+  .gallery-card {
     width: 240px;
     height: 240px;
+    margin-left: -120px;
   }
   
-  .gallery-video.position-0 {
-    transform: translateX(-176px) translateY(36px) translateZ(-336px) scale(0.53) rotateY(55deg) rotateX(-5deg);
+  .gallery-card.pos-0 {
+    transform: translateX(-180px) translateZ(-300px) rotateY(55deg) scale(0.55);
   }
-  
-  .gallery-video.position-1 {
-    transform: translateX(-88px) translateY(18px) translateZ(-168px) scale(0.73) rotateY(28deg) rotateX(-3deg);
+  .gallery-card.pos-1 {
+    transform: translateX(-130px) translateZ(-120px) rotateY(28deg) scale(0.75);
   }
-  
-  .gallery-video.position-3 {
-    transform: translateX(88px) translateY(18px) translateZ(-168px) scale(0.73) rotateY(-28deg) rotateX(-3deg);
+  .gallery-card.pos-3 {
+    transform: translateX(130px) translateZ(-120px) rotateY(-28deg) scale(0.75);
   }
-  
-  .gallery-video.position-4 {
-    transform: translateX(176px) translateY(36px) translateZ(-336px) scale(0.53) rotateY(-55deg) rotateX(-5deg);
+  .gallery-card.pos-4 {
+    transform: translateX(180px) translateZ(-300px) rotateY(-55deg) scale(0.55);
   }
 }
 
 @media (max-width: 768px) {
-  .video-gallery {
-    height: 370px;
-    margin-top: 2rem;
+  .intro-section {
+    padding: 6rem 1rem 4rem 1rem;
   }
   
-  .gallery-video {
+  .gallery-container {
+    height: 380px;
+  }
+  
+  .gallery-stage {
+    width: 200px;
+    height: 240px;
+  }
+  
+  .gallery-card {
     width: 200px;
     height: 200px;
+    margin-left: -100px;
   }
   
-  .gallery-video.position-0 {
-    transform: translateX(-146px) translateY(30px) translateZ(-280px) scale(0.48) rotateY(55deg) rotateX(-5deg);
+  .gallery-card.pos-0 {
+    transform: translateX(-140px) translateZ(-250px) rotateY(50deg) scale(0.5);
+    opacity: 0.15;
+  }
+  .gallery-card.pos-1 {
+    transform: translateX(-100px) translateZ(-100px) rotateY(25deg) scale(0.7);
+    opacity: 0.6;
+  }
+  .gallery-card.pos-3 {
+    transform: translateX(100px) translateZ(-100px) rotateY(-25deg) scale(0.7);
+    opacity: 0.6;
+  }
+  .gallery-card.pos-4 {
+    transform: translateX(140px) translateZ(-250px) rotateY(-50deg) scale(0.5);
+    opacity: 0.15;
   }
   
-  .gallery-video.position-1 {
-    transform: translateX(-73px) translateY(15px) translateZ(-140px) scale(0.68) rotateY(28deg) rotateX(-3deg);
-  }
-  
-  .gallery-video.position-3 {
-    transform: translateX(73px) translateY(15px) translateZ(-140px) scale(0.68) rotateY(-28deg) rotateX(-3deg);
-  }
-  
-  .gallery-video.position-4 {
-    transform: translateX(146px) translateY(30px) translateZ(-280px) scale(0.48) rotateY(-55deg) rotateX(-5deg);
-  }
-  
-  .gallery-video .video-reflection {
-    opacity: 0.25 !important;
+  /* Hide reflections on mobile for performance */
+  .card-reflection {
+    display: none;
   }
 }
 
