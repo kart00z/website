@@ -7,35 +7,34 @@ function App() {
   const [activeSection, setActiveSection] = useState('intro');
   const [theme, setTheme] = useState('dark');
 
-  // Force all videos to play
+  // Force all videos to play continuously
   useEffect(() => {
     const playAllVideos = () => {
       const videos = document.querySelectorAll('video');
       videos.forEach(video => {
-        video.play().catch(() => {
-          // Retry on user interaction
-          document.addEventListener('click', () => video.play(), { once: true });
-        });
+        if (video.paused) {
+          video.play().catch(() => {});
+        }
       });
     };
 
-    // Play videos after a short delay to ensure they're loaded
-    const timer = setTimeout(playAllVideos, 1000);
+    // Play videos on load
+    playAllVideos();
     
-    // Also try to play on any user interaction
-    const handleInteraction = () => {
-      playAllVideos();
-      document.removeEventListener('click', handleInteraction);
-      document.removeEventListener('touchstart', handleInteraction);
-    };
+    // Keep checking and restarting paused videos
+    const interval = setInterval(playAllVideos, 2000);
     
+    // Also play on user interaction
+    const handleInteraction = () => playAllVideos();
     document.addEventListener('click', handleInteraction);
     document.addEventListener('touchstart', handleInteraction);
+    document.addEventListener('scroll', handleInteraction);
 
     return () => {
-      clearTimeout(timer);
+      clearInterval(interval);
       document.removeEventListener('click', handleInteraction);
       document.removeEventListener('touchstart', handleInteraction);
+      document.removeEventListener('scroll', handleInteraction);
     };
   }, []);
 
