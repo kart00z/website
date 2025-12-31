@@ -217,6 +217,17 @@ body[data-theme="dark"] .App {
   background: var(--bg-secondary);
 }
 
+/* iOS Safari theme overrides for sections */
+body.light .section-alt,
+body[data-theme="light"] .section-alt {
+  background: #f5f5f5;
+}
+
+body.dark .section-alt,
+body[data-theme="dark"] .section-alt {
+  background: #0a0a0a;
+}
+
 .content-wrapper {
   max-width: 1200px;
   margin: 0 auto;
