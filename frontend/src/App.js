@@ -173,7 +173,7 @@ function App() {
                 </p>
               </div>
 
-              {/* Rotating Video Gallery */}
+              {/* Rotating Video Gallery - Below statements */}
               <div className="video-gallery">
                 <div className="gallery-video gallery-video-1">
                   <video autoPlay loop muted playsInline preload="auto">
