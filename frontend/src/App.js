@@ -7,31 +7,55 @@ function App() {
   const [activeSection, setActiveSection] = useState('intro');
   const [theme, setTheme] = useState('dark');
 
-  // Simple video playback - only main videos now
+  // Video playback with proper sync
   useEffect(() => {
-    const playVideos = () => {
-      document.querySelectorAll('.gallery-video-main').forEach(video => {
-        if (video.paused) video.play().catch(() => {});
-        if (video.ended) {
-          video.currentTime = 0;
-          video.play().catch(() => {});
+    const setupSync = () => {
+      document.querySelectorAll('.gallery-card').forEach(card => {
+        const main = card.querySelector('.gallery-video-main');
+        const reflect = card.querySelector('.gallery-video-reflect');
+        
+        if (main && reflect) {
+          // Sync on load
+          const syncReflection = () => {
+            reflect.currentTime = main.currentTime;
+            if (main.paused) {
+              main.play().catch(() => {});
+            }
+            if (reflect.paused) {
+              reflect.play().catch(() => {});
+            }
+          };
+          
+          main.addEventListener('play', syncReflection);
+          main.addEventListener('seeked', syncReflection);
+          main.addEventListener('loadeddata', syncReflection);
+          
+          // Initial sync
+          syncReflection();
         }
       });
     };
 
-    const interval = setInterval(playVideos, 1000);
+    // Setup after videos load
+    setTimeout(setupSync, 500);
     
-    document.addEventListener('click', playVideos, { passive: true });
-    document.addEventListener('touchstart', playVideos, { passive: true });
-    document.addEventListener('visibilitychange', () => {
-      if (!document.hidden) playVideos();
-    });
+    // Keep them in sync periodically
+    const interval = setInterval(() => {
+      document.querySelectorAll('.gallery-card').forEach(card => {
+        const main = card.querySelector('.gallery-video-main');
+        const reflect = card.querySelector('.gallery-video-reflect');
+        if (main && reflect && Math.abs(main.currentTime - reflect.currentTime) > 0.5) {
+          reflect.currentTime = main.currentTime;
+        }
+        if (main && main.paused) main.play().catch(() => {});
+        if (reflect && reflect.paused) reflect.play().catch(() => {});
+      });
+    }, 2000);
+    
+    document.addEventListener('click', setupSync, { passive: true });
+    document.addEventListener('touchstart', setupSync, { passive: true });
 
-    return () => {
-      clearInterval(interval);
-      document.removeEventListener('click', playVideos);
-      document.removeEventListener('touchstart', playVideos);
-    };
+    return () => clearInterval(interval);
   }, []);
 
   useEffect(() => {
