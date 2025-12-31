@@ -903,11 +903,23 @@ body[data-theme="dark"] .section-alt {
   width: 100%;
   height: auto;
   display: block;
-  transition: all 0.4s ease;
+  transition: transform 0.4s ease;
   border-radius: 12px;
-  /* Ensure no blur on portfolio videos */
+}
+
+/* Ensure portfolio videos are NEVER blurred - override any inherited styles */
+.portfolio-video,
+.portfolio-video-wrapper video,
+.portfolio-item video {
   filter: none !important;
   -webkit-filter: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  transform: none;
+}
+
+.portfolio-item:hover .portfolio-video {
+  transform: scale(1.02);
 }
 
 /* Custom glass video controls styling */
@@ -923,8 +935,7 @@ body[data-theme="dark"] .section-alt {
   filter: brightness(1.2);
 }
 
-.portfolio-item:hover .portfolio-image,
-.portfolio-item:hover .portfolio-video {
+.portfolio-item:hover .portfolio-image {
   transform: scale(1.02);
 }
 
