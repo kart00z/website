@@ -134,6 +134,7 @@ function App() {
       <div className="App">
         {/* Theme Toggle - Sun/Moon */}
         <button 
+          type="button"
           className="theme-toggle" 
           onClick={toggleTheme}
           aria-label="Toggle theme"
