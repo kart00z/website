@@ -373,7 +373,7 @@ body {
   
   .gallery-stage {
     width: 240px;
-    height: 280px;
+    height: 350px;
   }
   
   .gallery-card {
@@ -407,7 +407,7 @@ body {
   
   .gallery-stage {
     width: 200px;
-    height: 240px;
+    height: 300px;
   }
   
   .gallery-card {
@@ -433,9 +433,15 @@ body {
     opacity: 0.15;
   }
   
-  /* Hide reflections on mobile for performance */
-  .card-reflection {
-    display: none;
+  /* Simpler reflection on mobile */
+  .card-inner {
+    -webkit-box-reflect: below 5px linear-gradient(
+      to bottom,
+      transparent 0%,
+      rgba(0, 0, 0, 0.2) 20%,
+      rgba(0, 0, 0, 0.8) 60%,
+      rgba(0, 0, 0, 1) 100%
+    );
   }
 }
 
