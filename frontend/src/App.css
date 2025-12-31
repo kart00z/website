@@ -251,8 +251,7 @@ body {
   border-radius: 16px;
   overflow: hidden;
   position: relative;
-  background: linear-gradient(135deg, rgba(30,30,30,0.9) 0%, rgba(10,10,10,0.9) 100%);
-  box-shadow: 0 25px 80px rgba(0,0,0,0.6);
+  background: #000;
 }
 
 .card-video-wrapper video {
@@ -261,27 +260,21 @@ body {
   object-fit: cover;
   display: block;
   transition: filter 0.5s ease;
-  background: #111;
-}
-
-/* Remove the edge fade overlay */
-.card-video-wrapper::after {
-  display: none;
+  background: #000;
 }
 
 /* ============================================
-   FLOOR REFLECTION - Separate element below card
+   FLOOR REFLECTION - Below each card
    ============================================ */
 .card-reflection {
   position: absolute;
-  top: 285px; /* Card height (280px) + 5px gap */
+  top: 285px;
   left: 0;
   width: 100%;
-  height: 120px;
+  height: 150px;
   overflow: hidden;
   pointer-events: none;
-  z-index: -1; /* Behind the card */
-  border-radius: 16px;
+  z-index: -1;
 }
 
 /* The flipped video inside reflection */
@@ -289,15 +282,14 @@ body {
   width: 100%;
   height: 280px;
   object-fit: cover;
-  object-position: top;
-  transform: scaleY(-1); /* Flip vertically */
+  object-position: bottom center;
+  transform: scaleY(-1);
   transform-origin: top;
-  /* Frosted glass effect - blurred but vibrant */
-  filter: blur(12px) saturate(1.1) brightness(0.6);
-  opacity: 0.7;
+  /* Frosted glass - blurred but shows video content */
+  filter: blur(8px) saturate(1.3) brightness(0.7);
 }
 
-/* Gradient fade - makes reflection fade into the background */
+/* Smooth gradient fade - very gradual */
 .card-reflection::after {
   content: '';
   position: absolute;
@@ -307,30 +299,25 @@ body {
   bottom: 0;
   background: linear-gradient(
     to bottom,
-    transparent 0%,
-    rgba(0, 0, 0, 0.4) 30%,
-    rgba(0, 0, 0, 0.8) 70%,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 0.1) 20%,
+    rgba(0, 0, 0, 0.3) 40%,
+    rgba(0, 0, 0, 0.5) 60%,
+    rgba(0, 0, 0, 0.7) 80%,
     var(--bg-primary) 100%
   );
   pointer-events: none;
 }
 
-/* Glass floor shine line */
+/* Subtle glass shine line at top */
 .card-reflection::before {
   content: '';
   position: absolute;
   top: 0;
-  left: 10%;
-  right: 10%;
+  left: 5%;
+  right: 5%;
   height: 1px;
-  background: linear-gradient(
-    90deg,
-    transparent 0%,
-    rgba(255, 255, 255, 0.2) 20%,
-    rgba(255, 255, 255, 0.4) 50%,
-    rgba(255, 255, 255, 0.2) 80%,
-    transparent 100%
-  );
+  background: rgba(255, 255, 255, 0.15);
   z-index: 5;
 }
 
