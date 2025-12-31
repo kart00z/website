@@ -608,6 +608,7 @@ body[data-theme="dark"] .App {
   color: var(--text-primary);
   margin-bottom: 2rem;
   letter-spacing: -0.02em;
+  transition: color 0.3s ease;
 }
 
 /* Glass Cards - Refined Professional Glassmorphism */
