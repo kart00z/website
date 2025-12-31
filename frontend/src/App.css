@@ -344,7 +344,7 @@ body {
   filter: blur(2px) brightness(0.75);
 }
 .gallery-card.pos-1 .card-reflection {
-  opacity: 0.5;
+  opacity: 0.6;
 }
 
 /* Center (Active) */
@@ -359,8 +359,8 @@ body {
 .gallery-card.pos-2 .card-reflection {
   opacity: 1;
 }
-.gallery-card.pos-2 .card-reflection video {
-  filter: blur(6px) saturate(1.4) brightness(0.75);
+.gallery-card.pos-2 .reflection-video-container video {
+  filter: blur(6px) saturate(1.3) brightness(0.8);
 }
 
 /* Right */
@@ -373,7 +373,7 @@ body {
   filter: blur(2px) brightness(0.75);
 }
 .gallery-card.pos-3 .card-reflection {
-  opacity: 0.5;
+  opacity: 0.6;
 }
 
 /* Far Right - rotate away */
