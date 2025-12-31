@@ -82,12 +82,6 @@ function App() {
       document.removeEventListener('touchstart', handleInteraction);
     };
   }, []);
-    return () => {
-      clearInterval(interval);
-      document.removeEventListener('click', handleInteraction);
-      document.removeEventListener('touchstart', handleInteraction);
-    };
-  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
