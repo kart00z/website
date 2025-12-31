@@ -6,80 +6,36 @@ function App() {
   const [scrollRotation, setScrollRotation] = useState(0);
   const [activeSection, setActiveSection] = useState('intro');
   const [theme, setTheme] = useState('dark');
-  const [videosStarted, setVideosStarted] = useState(false);
 
-  // Video playback handler
+  // Simple video playback - keep trying to play
   useEffect(() => {
-    const playVideo = async (video) => {
-      try {
-        if (video.ended) video.currentTime = 0;
-        await video.play();
-        return true;
-      } catch (e) {
-        return false;
-      }
-    };
-
-    const startAllVideos = async () => {
-      const galleryVideos = document.querySelectorAll('.gallery-video-main, .gallery-video-reflect');
-      let allPlaying = true;
-      
-      for (const video of galleryVideos) {
-        const success = await playVideo(video);
-        if (!success) allPlaying = false;
-      }
-      
-      if (allPlaying) {
-        setVideosStarted(true);
-      }
-    };
-
-    const keepVideosPlaying = () => {
-      const galleryVideos = document.querySelectorAll('.gallery-video-main, .gallery-video-reflect');
-      galleryVideos.forEach(video => {
-        if (video.paused || video.ended) {
-          playVideo(video);
+    const playVideos = () => {
+      document.querySelectorAll('.gallery-video-main, .gallery-video-reflect').forEach(video => {
+        if (video.paused) {
+          video.play().catch(() => {});
+        }
+        if (video.ended) {
+          video.currentTime = 0;
+          video.play().catch(() => {});
         }
       });
     };
 
-    // Set up video event handlers
-    const galleryVideos = document.querySelectorAll('.gallery-video-main, .gallery-video-reflect');
-    galleryVideos.forEach(video => {
-      video.addEventListener('ended', () => {
-        video.currentTime = 0;
-        playVideo(video);
-      });
-      video.addEventListener('pause', () => {
-        setTimeout(() => playVideo(video), 50);
-      });
-      video.addEventListener('loadeddata', () => playVideo(video));
-    });
-
-    // Try to start videos immediately
-    startAllVideos();
-
-    // Keep checking
-    const interval = setInterval(keepVideosPlaying, 500);
-
-    // User interaction - critical for Firefox
-    const handleInteraction = () => {
-      startAllVideos();
-    };
+    // Try every 300ms
+    const interval = setInterval(playVideos, 300);
     
-    document.addEventListener('click', handleInteraction);
-    document.addEventListener('touchstart', handleInteraction);
-    document.addEventListener('keydown', handleInteraction, { once: true });
-    document.addEventListener('scroll', handleInteraction, { once: true });
+    // Also on any user action
+    const events = ['click', 'touchstart', 'scroll', 'keydown', 'mousemove'];
+    events.forEach(e => document.addEventListener(e, playVideos, { passive: true }));
     
+    // On visibility change
     document.addEventListener('visibilitychange', () => {
-      if (!document.hidden) startAllVideos();
+      if (!document.hidden) playVideos();
     });
 
     return () => {
       clearInterval(interval);
-      document.removeEventListener('click', handleInteraction);
-      document.removeEventListener('touchstart', handleInteraction);
+      events.forEach(e => document.removeEventListener(e, playVideos));
     };
   }, []);
 
