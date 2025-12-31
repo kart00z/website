@@ -106,7 +106,7 @@ function App() {
       }
     });
 
-    const interval = setInterval(rotateGallery, 3500);
+    const interval = setInterval(rotateGallery, 4500);
     return () => clearInterval(interval);
   }, []);
 
