@@ -216,11 +216,12 @@ body {
    ============================================ */
 .gallery-container {
   width: 100%;
-  min-height: 500px;
+  min-height: 550px;
   display: flex;
   align-items: center;
   justify-content: center;
   position: relative;
+  overflow: visible;
 }
 
 .gallery-stage {
