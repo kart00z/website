@@ -346,12 +346,12 @@ body {
 
 /* Far Left - rotate away to avoid overlap */
 .gallery-card.pos-0 {
-  transform: translateX(-220px) translateZ(-350px) rotateY(55deg) scale(0.6);
-  opacity: 0.2;
+  transform: translateX(-240px) translateZ(-400px) rotateY(60deg) scale(0.55);
+  opacity: 0.15;
   z-index: 1;
 }
 .gallery-card.pos-0 .card-video-wrapper video {
-  filter: blur(4px) brightness(0.6);
+  filter: blur(5px) brightness(0.5);
 }
 .gallery-card.pos-0 .card-reflection {
   opacity: 0;
@@ -359,15 +359,15 @@ body {
 
 /* Left */
 .gallery-card.pos-1 {
-  transform: translateX(-160px) translateZ(-150px) rotateY(30deg) scale(0.8);
-  opacity: 0.7;
+  transform: translateX(-170px) translateZ(-180px) rotateY(35deg) scale(0.78);
+  opacity: 0.65;
   z-index: 2;
 }
 .gallery-card.pos-1 .card-video-wrapper video {
-  filter: blur(3px) brightness(0.75);
+  filter: blur(3px) brightness(0.7);
 }
 .gallery-card.pos-1 .card-reflection {
-  opacity: 0.25;
+  opacity: 0.2;
 }
 
 /* Center (Active) */
@@ -380,33 +380,39 @@ body {
   filter: none;
 }
 .gallery-card.pos-2 .card-reflection {
-  opacity: 0.4;
+  opacity: 0.45;
 }
 .gallery-card.pos-2 .card-video-wrapper::after {
-  opacity: 0.3;
+  background: radial-gradient(
+    ellipse at center,
+    transparent 60%,
+    rgba(0,0,0,0.15) 80%,
+    rgba(0,0,0,0.4) 95%,
+    var(--bg-primary) 100%
+  );
 }
 
 /* Right */
 .gallery-card.pos-3 {
-  transform: translateX(160px) translateZ(-150px) rotateY(-30deg) scale(0.8);
-  opacity: 0.7;
+  transform: translateX(170px) translateZ(-180px) rotateY(-35deg) scale(0.78);
+  opacity: 0.65;
   z-index: 2;
 }
 .gallery-card.pos-3 .card-video-wrapper video {
-  filter: blur(3px) brightness(0.75);
+  filter: blur(3px) brightness(0.7);
 }
 .gallery-card.pos-3 .card-reflection {
-  opacity: 0.25;
+  opacity: 0.2;
 }
 
 /* Far Right - rotate away */
 .gallery-card.pos-4 {
-  transform: translateX(220px) translateZ(-350px) rotateY(-55deg) scale(0.6);
-  opacity: 0.2;
+  transform: translateX(240px) translateZ(-400px) rotateY(-60deg) scale(0.55);
+  opacity: 0.15;
   z-index: 1;
 }
 .gallery-card.pos-4 .card-video-wrapper video {
-  filter: blur(4px) brightness(0.6);
+  filter: blur(5px) brightness(0.5);
 }
 .gallery-card.pos-4 .card-reflection {
   opacity: 0;
