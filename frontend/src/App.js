@@ -242,13 +242,15 @@ function App() {
                   <div key={index} className={`gallery-card gallery-card-${index}`} data-index={index}>
                     {/* Main video card */}
                     <div className="card-main">
-                      <video autoPlay loop muted playsInline preload="auto">
+                      <video autoPlay loop muted playsInline preload="auto" className="gallery-video-main">
+                        <source src={src} type="video/quicktime" />
                         <source src={src} type="video/mp4" />
                       </video>
                     </div>
                     {/* Reflection - flipped video below */}
                     <div className="card-reflect">
-                      <video autoPlay loop muted playsInline preload="auto">
+                      <video autoPlay loop muted playsInline preload="auto" className="gallery-video-reflect">
+                        <source src={src} type="video/quicktime" />
                         <source src={src} type="video/mp4" />
                       </video>
                       <div className="reflect-fade"></div>
