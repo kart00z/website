@@ -947,16 +947,26 @@ video.portfolio-video {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 0.75rem;
+  gap: 1rem;
   margin-top: 0.5rem;
 }
 
+.tool-item {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
 .tool-logo {
-  height: 20px;
+  height: 18px;
   width: auto;
   object-fit: contain;
-  opacity: 0.85;
+  opacity: 0.9;
   transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.tool-logo-rounded {
+  border-radius: 4px;
 }
 
 .tool-logo:hover {
@@ -968,7 +978,7 @@ video.portfolio-video {
   font-size: 0.8rem;
   color: var(--text-tertiary);
   font-weight: 400;
-  margin-left: -0.25rem;
+  transition: color 0.3s ease;
 }
 
 .portfolio-placeholder-item {
