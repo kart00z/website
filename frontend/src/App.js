@@ -35,44 +35,37 @@ function App() {
   useEffect(() => {
     // Smooth one-direction carousel rotation
     const rotateGallery = () => {
-      const videos = document.querySelectorAll('.gallery-video');
+      const cards = document.querySelectorAll('.gallery-card');
+      if (cards.length === 0) return;
       
-      // Remove active from all
-      videos.forEach(video => {
-        video.classList.remove('active', 'position-0', 'position-1', 'position-2', 'position-3', 'position-4');
-      });
-
-      // Get current positions
-      const positions = [];
-      videos.forEach((video, index) => {
-        const currentPos = parseInt(video.dataset.position || index);
-        positions.push({ video, pos: currentPos });
-      });
-
-      // Move each video to next position (circular)
-      positions.forEach(({ video, pos }) => {
-        const nextPos = (pos + 1) % videos.length;
-        video.dataset.position = nextPos;
-        video.classList.add(`position-${nextPos}`);
+      cards.forEach(card => {
+        const currentPos = parseInt(card.dataset.position || card.dataset.index);
+        // Move to next position (circular, one direction)
+        const nextPos = (currentPos + 1) % cards.length;
+        card.dataset.position = nextPos;
         
-        // Mark center video as active
+        // Update classes
+        card.classList.remove('pos-0', 'pos-1', 'pos-2', 'pos-3', 'pos-4', 'active');
+        card.classList.add(`pos-${nextPos}`);
+        
+        // Center card (position 2) is active
         if (nextPos === 2) {
-          video.classList.add('active');
+          card.classList.add('active');
         }
       });
     };
 
     // Initialize positions
-    const videos = document.querySelectorAll('.gallery-video');
-    videos.forEach((video, index) => {
-      video.dataset.position = index;
-      video.classList.add(`position-${index}`);
+    const cards = document.querySelectorAll('.gallery-card');
+    cards.forEach((card, index) => {
+      card.dataset.position = index;
+      card.classList.add(`pos-${index}`);
       if (index === 2) {
-        video.classList.add('active');
+        card.classList.add('active');
       }
     });
 
-    const interval = setInterval(rotateGallery, 4000);
+    const interval = setInterval(rotateGallery, 3500);
     return () => clearInterval(interval);
   }, []);
 
