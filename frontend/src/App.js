@@ -164,85 +164,61 @@ function App() {
         </nav>
 
         {/* INTRO Section */}
-        <section id="intro" className="section" data-testid="intro-section">
-          <div className="content-wrapper">
-            <div className="vertical-line"></div>
-            <div className="main-content">
-              
-              <h1 className="hero-title" data-testid="hero-title">
-                <span className="text-intro">i am</span>{' '}
-                <span className="name-primary">kartikye</span>{' '}
-                <span className="name-secondary">kashyap</span>
-              </h1>
-              
-              <div className="statements" data-testid="intro-statements">
-                <p className="statement fade-in-1">
-                  i bridge technology and creativity.
-                </p>
-                <p className="statement fade-in-2">
-                  i think the tools we build shape the art we make.
-                </p>
-                <p className="statement fade-in-3">
-                  i think ai can be powerful{' '}
-                  <span className="highlight-tool" data-testid="tool-highlight">tool</span>.
-                </p>
-                <p className="statement fade-in-4">
-                  i create without limits.
-                </p>
+        <section id="intro" className="section intro-section" data-testid="intro-section">
+          <div className="intro-layout">
+            {/* Left: Text Content */}
+            <div className="intro-text-content">
+              <div className="vertical-line"></div>
+              <div className="intro-text-inner">
+                <h1 className="hero-title" data-testid="hero-title">
+                  <span className="text-intro">i am</span>{' '}
+                  <span className="name-primary">kartikye</span>{' '}
+                  <span className="name-secondary">kashyap</span>
+                </h1>
+                
+                <div className="statements" data-testid="intro-statements">
+                  <p className="statement fade-in-1">
+                    i bridge technology and creativity.
+                  </p>
+                  <p className="statement fade-in-2">
+                    i think the tools we build shape the art we make.
+                  </p>
+                  <p className="statement fade-in-3">
+                    i think ai can be powerful{' '}
+                    <span className="highlight-tool" data-testid="tool-highlight">tool</span>.
+                  </p>
+                  <p className="statement fade-in-4">
+                    i create without limits.
+                  </p>
+                </div>
               </div>
+            </div>
 
-              {/* Rotating Video Gallery - Below statements */}
-              <div className="video-gallery">
-                <div className="gallery-video gallery-video-1">
-                  <video autoPlay loop muted playsInline preload="auto" className="main-video">
-                    <source src="https://customer-assets.emergentagent.com/job_f89c7579-45ce-4797-86a4-864b9c1026f7/artifacts/luskimt2_copy_3F55AC6B-5FBA-409A-BEA5-D4925190E716.MOV" type="video/quicktime" />
-                  </video>
-                  <div className="video-reflection">
-                    <video autoPlay loop muted playsInline preload="auto">
-                      <source src="https://customer-assets.emergentagent.com/job_f89c7579-45ce-4797-86a4-864b9c1026f7/artifacts/luskimt2_copy_3F55AC6B-5FBA-409A-BEA5-D4925190E716.MOV" type="video/quicktime" />
-                    </video>
+            {/* Right: Video Gallery */}
+            <div className="gallery-container" data-testid="video-gallery">
+              <div className="gallery-stage">
+                {[
+                  "https://customer-assets.emergentagent.com/job_f89c7579-45ce-4797-86a4-864b9c1026f7/artifacts/luskimt2_copy_3F55AC6B-5FBA-409A-BEA5-D4925190E716.MOV",
+                  "https://customer-assets.emergentagent.com/job_f89c7579-45ce-4797-86a4-864b9c1026f7/artifacts/wjml9oab_copy_FE7C6C77-06D3-4BBB-A7F1-05114D95309A.MOV",
+                  "https://customer-assets.emergentagent.com/job_f89c7579-45ce-4797-86a4-864b9c1026f7/artifacts/wfu9u7ya_copy_654B0D2E-9F53-480A-A6AA-B05D56963BD9.MOV",
+                  "https://customer-assets.emergentagent.com/job_f89c7579-45ce-4797-86a4-864b9c1026f7/artifacts/xxf7gddq_copy_67AB9974-530F-4871-830C-C0108EFD6DEA.mov",
+                  "https://customer-assets.emergentagent.com/job_f89c7579-45ce-4797-86a4-864b9c1026f7/artifacts/imquazrs_copy_093AB1A6-6CFB-4EDD-8180-3FF7CF4904D0.MOV"
+                ].map((src, index) => (
+                  <div key={index} className={`gallery-card gallery-card-${index}`} data-index={index}>
+                    <div className="card-video-wrapper">
+                      <video autoPlay loop muted playsInline preload="auto">
+                        <source src={src} type="video/quicktime" />
+                        <source src={src} type="video/mp4" />
+                      </video>
+                    </div>
+                    <div className="card-reflection">
+                      <video autoPlay loop muted playsInline preload="auto">
+                        <source src={src} type="video/quicktime" />
+                        <source src={src} type="video/mp4" />
+                      </video>
+                    </div>
                   </div>
-                </div>
-                <div className="gallery-video gallery-video-2">
-                  <video autoPlay loop muted playsInline preload="auto" className="main-video">
-                    <source src="https://customer-assets.emergentagent.com/job_f89c7579-45ce-4797-86a4-864b9c1026f7/artifacts/wjml9oab_copy_FE7C6C77-06D3-4BBB-A7F1-05114D95309A.MOV" type="video/quicktime" />
-                  </video>
-                  <div className="video-reflection">
-                    <video autoPlay loop muted playsInline preload="auto">
-                      <source src="https://customer-assets.emergentagent.com/job_f89c7579-45ce-4797-86a4-864b9c1026f7/artifacts/wjml9oab_copy_FE7C6C77-06D3-4BBB-A7F1-05114D95309A.MOV" type="video/quicktime" />
-                    </video>
-                  </div>
-                </div>
-                <div className="gallery-video gallery-video-3 active">
-                  <video autoPlay loop muted playsInline preload="auto" className="main-video">
-                    <source src="https://customer-assets.emergentagent.com/job_f89c7579-45ce-4797-86a4-864b9c1026f7/artifacts/wfu9u7ya_copy_654B0D2E-9F53-480A-A6AA-B05D56963BD9.MOV" type="video/quicktime" />
-                  </video>
-                  <div className="video-reflection">
-                    <video autoPlay loop muted playsInline preload="auto">
-                      <source src="https://customer-assets.emergentagent.com/job_f89c7579-45ce-4797-86a4-864b9c1026f7/artifacts/wfu9u7ya_copy_654B0D2E-9F53-480A-A6AA-B05D56963BD9.MOV" type="video/quicktime" />
-                    </video>
-                  </div>
-                </div>
-                <div className="gallery-video gallery-video-4">
-                  <video autoPlay loop muted playsInline preload="auto" className="main-video">
-                    <source src="https://customer-assets.emergentagent.com/job_f89c7579-45ce-4797-86a4-864b9c1026f7/artifacts/xxf7gddq_copy_67AB9974-530F-4871-830C-C0108EFD6DEA.mov" type="video/quicktime" />
-                  </video>
-                  <div className="video-reflection">
-                    <video autoPlay loop muted playsInline preload="auto">
-                      <source src="https://customer-assets.emergentagent.com/job_f89c7579-45ce-4797-86a4-864b9c1026f7/artifacts/xxf7gddq_copy_67AB9974-530F-4871-830C-C0108EFD6DEA.mov" type="video/quicktime" />
-                    </video>
-                  </div>
-                </div>
-                <div className="gallery-video gallery-video-5">
-                  <video autoPlay loop muted playsInline preload="auto" className="main-video">
-                    <source src="https://customer-assets.emergentagent.com/job_f89c7579-45ce-4797-86a4-864b9c1026f7/artifacts/imquazrs_copy_093AB1A6-6CFB-4EDD-8180-3FF7CF4904D0.MOV" type="video/quicktime" />
-                  </video>
-                  <div className="video-reflection">
-                    <video autoPlay loop muted playsInline preload="auto">
-                      <source src="https://customer-assets.emergentagent.com/job_f89c7579-45ce-4797-86a4-864b9c1026f7/artifacts/imquazrs_copy_093AB1A6-6CFB-4EDD-8180-3FF7CF4904D0.MOV" type="video/quicktime" />
-                    </video>
-                  </div>
-                </div>
+                ))}
               </div>
             </div>
           </div>
