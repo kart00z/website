@@ -244,8 +244,8 @@ body {
   will-change: transform, opacity;
 }
 
-/* Card inner container with reflection */
-.card-inner {
+/* Main video card */
+.card-main {
   width: 100%;
   height: 100%;
   border-radius: 16px;
@@ -253,18 +253,9 @@ body {
   position: relative;
   background: #0a0a0a;
   box-shadow: 0 20px 60px rgba(0,0,0,0.5);
-  /* CSS Reflection - creates real reflection below */
-  -webkit-box-reflect: below 8px linear-gradient(
-    to bottom,
-    transparent 0%,
-    rgba(0, 0, 0, 0.1) 10%,
-    rgba(0, 0, 0, 0.3) 30%,
-    rgba(0, 0, 0, 0.6) 60%,
-    rgba(0, 0, 0, 1) 100%
-  );
 }
 
-.card-video {
+.card-main video {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -272,31 +263,46 @@ body {
   transition: filter 0.5s ease;
 }
 
-/* Glass floor surface */
-.gallery-floor {
+/* ============================================
+   REFLECTION - Flipped video below card
+   ============================================ */
+.card-reflect {
   position: absolute;
-  bottom: 20px;
-  left: -100px;
-  right: -100px;
-  height: 150px;
-  background: linear-gradient(
-    to bottom,
-    transparent 0%,
-    rgba(255, 255, 255, 0.02) 20%,
-    rgba(255, 255, 255, 0.05) 100%
-  );
-  border-radius: 50%;
-  filter: blur(20px);
+  top: 100%;
+  left: 0;
+  width: 100%;
+  height: 120px;
+  margin-top: 8px;
+  overflow: hidden;
   pointer-events: none;
+  transform: scaleY(-1);
+  border-radius: 0 0 16px 16px;
 }
 
-:root[data-theme="light"] .gallery-floor {
+.card-reflect video {
+  width: 100%;
+  height: 280px;
+  object-fit: cover;
+  object-position: top;
+  filter: blur(8px) saturate(1.3) brightness(0.8);
+}
+
+/* Fade overlay on reflection */
+.reflect-fade {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  top: 0;
   background: linear-gradient(
-    to bottom,
+    to top,
     transparent 0%,
-    rgba(0, 0, 0, 0.02) 20%,
-    rgba(0, 0, 0, 0.05) 100%
+    transparent 30%,
+    rgba(0, 0, 0, 0.3) 50%,
+    rgba(0, 0, 0, 0.6) 70%,
+    var(--bg-primary) 100%
   );
+  pointer-events: none;
 }
 
 /* ============================================
