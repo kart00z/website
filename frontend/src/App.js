@@ -240,16 +240,22 @@ function App() {
                   "https://customer-assets.emergentagent.com/job_f89c7579-45ce-4797-86a4-864b9c1026f7/artifacts/imquazrs_copy_093AB1A6-6CFB-4EDD-8180-3FF7CF4904D0.MOV"
                 ].map((src, index) => (
                   <div key={index} className={`gallery-card gallery-card-${index}`} data-index={index}>
-                    <div className="card-inner">
-                      <video autoPlay loop muted playsInline preload="auto" className="card-video">
+                    {/* Main video card */}
+                    <div className="card-main">
+                      <video autoPlay loop muted playsInline preload="auto">
                         <source src={src} type="video/mp4" />
                       </video>
+                    </div>
+                    {/* Reflection - flipped video below */}
+                    <div className="card-reflect">
+                      <video autoPlay loop muted playsInline preload="auto">
+                        <source src={src} type="video/mp4" />
+                      </video>
+                      <div className="reflect-fade"></div>
                     </div>
                   </div>
                 ))}
               </div>
-              {/* Glass floor for reflections */}
-              <div className="gallery-floor"></div>
             </div>
           </div>
         </section>
