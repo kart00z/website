@@ -7,55 +7,45 @@ function App() {
   const [activeSection, setActiveSection] = useState('intro');
   const [theme, setTheme] = useState('dark');
 
-  // Video playback with proper sync
+  // Video playback with tighter sync - using requestAnimationFrame for smoother sync
   useEffect(() => {
-    const setupSync = () => {
+    let animationId;
+    
+    const syncAllVideos = () => {
       document.querySelectorAll('.gallery-card').forEach(card => {
         const main = card.querySelector('.gallery-video-main');
         const reflect = card.querySelector('.gallery-video-reflect');
         
         if (main && reflect) {
-          // Sync on load
-          const syncReflection = () => {
+          // Only sync if drift is noticeable (>0.1 seconds)
+          if (Math.abs(main.currentTime - reflect.currentTime) > 0.1) {
             reflect.currentTime = main.currentTime;
-            if (main.paused) {
-              main.play().catch(() => {});
-            }
-            if (reflect.paused) {
-              reflect.play().catch(() => {});
-            }
-          };
-          
-          main.addEventListener('play', syncReflection);
-          main.addEventListener('seeked', syncReflection);
-          main.addEventListener('loadeddata', syncReflection);
-          
-          // Initial sync
-          syncReflection();
+          }
+          // Ensure both are playing
+          if (main.paused) main.play().catch(() => {});
+          if (reflect.paused) reflect.play().catch(() => {});
         }
       });
+      // Check sync every ~500ms using RAF for smoother timing
+      animationId = setTimeout(() => requestAnimationFrame(syncAllVideos), 500);
     };
 
-    // Setup after videos load
-    setTimeout(setupSync, 500);
+    // Start sync after initial load
+    const startTimeout = setTimeout(() => {
+      syncAllVideos();
+    }, 300);
     
-    // Keep them in sync periodically
-    const interval = setInterval(() => {
-      document.querySelectorAll('.gallery-card').forEach(card => {
-        const main = card.querySelector('.gallery-video-main');
-        const reflect = card.querySelector('.gallery-video-reflect');
-        if (main && reflect && Math.abs(main.currentTime - reflect.currentTime) > 0.5) {
-          reflect.currentTime = main.currentTime;
-        }
-        if (main && main.paused) main.play().catch(() => {});
-        if (reflect && reflect.paused) reflect.play().catch(() => {});
-      });
-    }, 2000);
-    
-    document.addEventListener('click', setupSync, { passive: true });
-    document.addEventListener('touchstart', setupSync, { passive: true });
+    // Also sync on user interaction (helps mobile browsers)
+    const handleInteraction = () => syncAllVideos();
+    document.addEventListener('click', handleInteraction, { passive: true });
+    document.addEventListener('touchstart', handleInteraction, { passive: true });
 
-    return () => clearInterval(interval);
+    return () => {
+      clearTimeout(startTimeout);
+      clearTimeout(animationId);
+      document.removeEventListener('click', handleInteraction);
+      document.removeEventListener('touchstart', handleInteraction);
+    };
   }, []);
 
   useEffect(() => {
@@ -276,17 +266,34 @@ function App() {
               <h2 className="section-title" data-testid="portfolio-title">portfolio</h2>
               
               <div className="portfolio-grid">
-                <div className="portfolio-item" data-testid="portfolio-item-1">
-                  <div className="portfolio-image-wrapper">
-                    <img 
-                      src="https://customer-assets.emergentagent.com/job_f89c7579-45ce-4797-86a4-864b9c1026f7/artifacts/m8evkh55_EgxieYPDJCs.webp"
-                      alt="Runway GEN:48 Aleph Edition - People's Choice Winner"
-                      className="portfolio-image"
-                    />
+                {/* Featured: GEN:48 Award Winner */}
+                <div className="portfolio-item portfolio-featured" data-testid="portfolio-featured">
+                  <div className="portfolio-featured-wrapper">
+                    <div className="portfolio-featured-badge">
+                      <span className="badge-text">People's Choice Winner</span>
+                    </div>
+                    <div className="portfolio-image-wrapper">
+                      <img 
+                        src="https://customer-assets.emergentagent.com/job_f89c7579-45ce-4797-86a4-864b9c1026f7/artifacts/m8evkh55_EgxieYPDJCs.webp"
+                        alt="∞ - Runway GEN:48 Aleph Edition People's Choice Winner"
+                        className="portfolio-image"
+                      />
+                    </div>
                   </div>
-                  <div className="portfolio-info">
-                    <h3 className="portfolio-project-title">Runway GEN:48 Aleph Edition</h3>
-                    <p className="portfolio-project-role">People's Choice Winner</p>
+                  <div className="portfolio-featured-info">
+                    <h3 className="portfolio-featured-title">∞</h3>
+                    <p className="portfolio-featured-subtitle">Runway GEN:48 Aleph Edition</p>
+                    <div className="portfolio-featured-stats">
+                      <span className="stat-item">3000+ Submissions</span>
+                      <span className="stat-divider">|</span>
+                      <span className="stat-item">32 Finalists</span>
+                      <span className="stat-divider">|</span>
+                      <span className="stat-item">48-Hour AI Filmmaking Challenge</span>
+                    </div>
+                    <p className="portfolio-featured-description">
+                      Created using Runway's Aleph generative video technology in just 48 hours. 
+                      This film explores the boundaries of AI-assisted storytelling and visual art.
+                    </p>
                   </div>
                 </div>
 
@@ -388,32 +395,96 @@ function App() {
               <h2 className="section-title" data-testid="vita-title">vita</h2>
               
               <div className="glass-card" data-testid="vita-content">
+                {/* About */}
+                <div className="vita-item">
+                  <h3 className="vita-heading">About</h3>
+                  <p className="vita-text">
+                    Computer Science graduate from the University of Victoria specializing in AI/ML development and creative technology.
+                    I bridge technology and creativity through innovative solutions, combining AI-powered workflows with 3D design to push creative boundaries.
+                  </p>
+                </div>
+
+                {/* Recognition */}
                 <div className="vita-item">
                   <h3 className="vita-heading">Recognition</h3>
                   <p className="vita-text highlight-achievement">
                     People's Choice Winner - Runway GEN:48 Aleph Edition
                   </p>
                   <p className="vita-text">
-                    Recognized for pushing creative boundaries with AI-generated video art.
+                    Recognized for pushing creative boundaries with AI-generated video art. Selected from 3000+ submissions, among 32 finalists.
                   </p>
                 </div>
 
+                {/* Experience */}
                 <div className="vita-item">
-                  <h3 className="vita-heading">Experience & Background</h3>
-                  <p className="vita-text">
-                    A multidisciplinary creator at the intersection of technology and creativity.
-                  </p>
-                  <p className="vita-text">
-                    Exploring the boundaries of what's possible with AI, design, and development.
-                  </p>
+                  <h3 className="vita-heading">Experience</h3>
+                  
+                  <div className="experience-entry">
+                    <div className="experience-header">
+                      <span className="experience-role">Co-founder</span>
+                      <span className="experience-company">Pardesi</span>
+                    </div>
+                    <div className="experience-meta">
+                      <span>2023 - Present</span>
+                      <span className="meta-divider">·</span>
+                      <span>Victoria, BC</span>
+                    </div>
+                    <p className="vita-text">
+                      Co-founded and leading a cultural events organization. Led AJ Wavy Canada tour organization, managed event logistics and marketing, leveraged AI tools for content creation.
+                    </p>
+                  </div>
+
+                  <div className="experience-entry">
+                    <div className="experience-header">
+                      <span className="experience-role">Technical and Creative Lead</span>
+                      <span className="experience-company">Jambo Jar Technologies</span>
+                    </div>
+                    <div className="experience-meta">
+                      <span>March 2024 - March 2025</span>
+                      <span className="meta-divider">·</span>
+                      <span>New Delhi</span>
+                    </div>
+                    <p className="vita-text">
+                      Leading technical and creative teams in delivering AI-driven solutions. Overseeing technical and creative teams, managing AI/ML project pipelines, developing innovative tech solutions.
+                    </p>
+                  </div>
+
+                  <div className="experience-entry">
+                    <div className="experience-header">
+                      <span className="experience-role">AI Engineer Intern</span>
+                      <span className="experience-company">Denave</span>
+                    </div>
+                    <div className="experience-meta">
+                      <span>April 2023 - September 2023</span>
+                      <span className="meta-divider">·</span>
+                      <span>New Delhi</span>
+                    </div>
+                    <p className="vita-text">
+                      Led the development of an AI-driven database management system. Deployed in-house AI query system using LLMs, improved query response time and enhanced database efficiency.
+                    </p>
+                  </div>
+
+                  <div className="experience-entry">
+                    <div className="experience-header">
+                      <span className="experience-role">AI Intern</span>
+                      <span className="experience-company">Aftershoot (IIT Delhi)</span>
+                    </div>
+                    <div className="experience-meta">
+                      <span>May 2022 - August 2022</span>
+                      <span className="meta-divider">·</span>
+                      <span>New Delhi</span>
+                    </div>
+                    <p className="vita-text">
+                      Worked on AI photo-culling systems and model optimization. Tested and improved ML/AI models, enhanced model accuracy, collaborated with research teams.
+                    </p>
+                  </div>
                 </div>
                 
+                {/* Philosophy */}
                 <div className="vita-item">
                   <h3 className="vita-heading">Philosophy</h3>
                   <p className="vita-text">
                     I believe in creating tools that empower creativity rather than replace it.
-                  </p>
-                  <p className="vita-text">
                     Every project is an opportunity to push boundaries and challenge conventions.
                   </p>
                 </div>
