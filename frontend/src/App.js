@@ -7,19 +7,20 @@ function App() {
   const [activeSection, setActiveSection] = useState('intro');
   const [theme, setTheme] = useState('dark');
 
-  // AGGRESSIVE video playback - never let videos stop
+  // AGGRESSIVE video playback - only for gallery videos
   useEffect(() => {
-    const forcePlayAllVideos = () => {
-      const videos = document.querySelectorAll('video');
-      videos.forEach(video => {
+    const forcePlayGalleryVideos = () => {
+      // Only target gallery videos, not portfolio videos
+      const galleryVideos = document.querySelectorAll('.gallery-video-main, .gallery-video-reflect');
+      galleryVideos.forEach(video => {
         // Check if video is paused or stuck
         if (video.paused || video.ended) {
           video.currentTime = 0;
           video.play().catch(() => {});
         }
         // Also check if video is actually progressing
-        const lastTime = video.dataset.lastTime || 0;
-        if (Math.abs(video.currentTime - lastTime) < 0.01 && !video.paused) {
+        const lastTime = parseFloat(video.dataset.lastTime) || 0;
+        if (Math.abs(video.currentTime - lastTime) < 0.01 && !video.paused && video.currentTime > 0) {
           // Video might be stuck, try to restart
           video.currentTime = 0;
           video.play().catch(() => {});
@@ -29,17 +30,16 @@ function App() {
     };
 
     // Check every 500ms
-    const interval = setInterval(forcePlayAllVideos, 500);
+    const interval = setInterval(forcePlayGalleryVideos, 500);
     
     // Also force play on any interaction
-    const forcePlay = () => forcePlayAllVideos();
+    const forcePlay = () => forcePlayGalleryVideos();
     document.addEventListener('click', forcePlay);
     document.addEventListener('touchstart', forcePlay);
-    document.addEventListener('mousemove', forcePlay, { once: true });
     document.addEventListener('scroll', forcePlay);
     
-    // Initial play
-    forcePlayAllVideos();
+    // Initial play after short delay
+    setTimeout(forcePlayGalleryVideos, 1000);
 
     return () => {
       clearInterval(interval);
