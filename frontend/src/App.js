@@ -200,15 +200,16 @@ function App() {
                   <div key={index} className={`gallery-card gallery-card-${index}`} data-index={index}>
                     <div className="card-video-wrapper">
                       <video autoPlay loop muted playsInline preload="auto">
-                        <source src={src} type="video/quicktime" />
                         <source src={src} type="video/mp4" />
                       </video>
                     </div>
                     <div className="card-reflection">
-                      <video autoPlay loop muted playsInline preload="auto">
-                        <source src={src} type="video/quicktime" />
-                        <source src={src} type="video/mp4" />
-                      </video>
+                      <div className="reflection-video-container">
+                        <video autoPlay loop muted playsInline preload="auto">
+                          <source src={src} type="video/mp4" />
+                        </video>
+                      </div>
+                      <div className="reflection-gradient"></div>
                     </div>
                   </div>
                 ))}
