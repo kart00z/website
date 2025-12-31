@@ -111,16 +111,45 @@ function App() {
   }, []);
 
   useEffect(() => {
-    // Update theme on html, body, and App for iOS Safari compatibility
-    document.documentElement.setAttribute('data-theme', theme);
-    document.body.setAttribute('data-theme', theme);
-    document.documentElement.style.colorScheme = theme;
+    // iOS Safari requires direct style manipulation - CSS variables don't always work
+    const root = document.documentElement;
+    const body = document.body;
     
-    // Also toggle class for iOS Safari fallback
-    document.documentElement.classList.remove('dark', 'light');
-    document.documentElement.classList.add(theme);
-    document.body.classList.remove('dark', 'light');
-    document.body.classList.add(theme);
+    // Set attributes
+    root.setAttribute('data-theme', theme);
+    body.setAttribute('data-theme', theme);
+    root.style.colorScheme = theme;
+    
+    // Toggle classes
+    root.classList.remove('dark', 'light');
+    root.classList.add(theme);
+    body.classList.remove('dark', 'light');
+    body.classList.add(theme);
+    
+    // Direct style manipulation for iOS Safari
+    if (theme === 'light') {
+      root.style.setProperty('--bg-primary', '#ffffff');
+      root.style.setProperty('--bg-secondary', '#f5f5f5');
+      root.style.setProperty('--text-primary', '#000000');
+      root.style.setProperty('--text-secondary', 'rgba(0, 0, 0, 0.7)');
+      root.style.setProperty('--text-tertiary', 'rgba(0, 0, 0, 0.5)');
+      root.style.setProperty('--glass-bg', 'rgba(0, 0, 0, 0.02)');
+      root.style.setProperty('--glass-border', 'rgba(0, 0, 0, 0.08)');
+      root.style.setProperty('--glass-hover-bg', 'rgba(0, 0, 0, 0.04)');
+      root.style.setProperty('--glass-hover-border', 'rgba(0, 0, 0, 0.15)');
+      root.style.setProperty('--glow-color', 'rgba(0, 0, 0, 0.05)');
+    } else {
+      root.style.setProperty('--bg-primary', '#000000');
+      root.style.setProperty('--bg-secondary', '#0a0a0a');
+      root.style.setProperty('--text-primary', '#ffffff');
+      root.style.setProperty('--text-secondary', 'rgba(255, 255, 255, 0.7)');
+      root.style.setProperty('--text-tertiary', 'rgba(255, 255, 255, 0.5)');
+      root.style.setProperty('--glass-bg', 'rgba(255, 255, 255, 0.02)');
+      root.style.setProperty('--glass-border', 'rgba(255, 255, 255, 0.08)');
+      root.style.setProperty('--glass-hover-bg', 'rgba(255, 255, 255, 0.04)');
+      root.style.setProperty('--glass-hover-border', 'rgba(255, 255, 255, 0.15)');
+      root.style.setProperty('--glow-color', 'rgba(255, 255, 255, 0.1)');
+    }
   }, [theme]);
 
   const toggleTheme = (e) => {
