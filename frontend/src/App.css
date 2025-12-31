@@ -303,27 +303,26 @@ body {
 }
 
 /* ============================================
-   REFLECTION - Pure ambient glow, completely diffused
+   REFLECTION - BELOW the card, contained properly
    ============================================ */
 .card-reflect {
   position: absolute;
-  top: 100%;
+  top: 290px;
   left: -20%;
   width: 140%;
-  height: 60px;
-  margin-top: 25px;
+  height: 100px;
   pointer-events: none;
-  transform: scaleY(-1);
-  opacity: 0.5;
+  overflow: hidden;
+  opacity: 0.6;
 }
 
 .card-reflect video {
   width: 100%;
-  height: 150px;
+  height: 280px;
   object-fit: cover;
-  object-position: top;
-  /* EXTREME blur - pure ambient glow */
-  filter: blur(50px) saturate(1.4) brightness(0.4);
+  object-position: bottom;
+  transform: scaleY(-1);
+  filter: blur(40px) saturate(1.4) brightness(0.5);
 }
 
 .reflect-fade {
