@@ -7,34 +7,45 @@ function App() {
   const [activeSection, setActiveSection] = useState('intro');
   const [theme, setTheme] = useState('dark');
 
-  // Force all videos to play continuously
+  // AGGRESSIVE video playback - never let videos stop
   useEffect(() => {
-    const playAllVideos = () => {
+    const forcePlayAllVideos = () => {
       const videos = document.querySelectorAll('video');
       videos.forEach(video => {
-        if (video.paused) {
+        // Check if video is paused or stuck
+        if (video.paused || video.ended) {
+          video.currentTime = 0;
           video.play().catch(() => {});
         }
+        // Also check if video is actually progressing
+        const lastTime = video.dataset.lastTime || 0;
+        if (Math.abs(video.currentTime - lastTime) < 0.01 && !video.paused) {
+          // Video might be stuck, try to restart
+          video.currentTime = 0;
+          video.play().catch(() => {});
+        }
+        video.dataset.lastTime = video.currentTime;
       });
     };
 
-    // Play videos on load
-    playAllVideos();
+    // Check every 500ms
+    const interval = setInterval(forcePlayAllVideos, 500);
     
-    // Keep checking and restarting paused videos
-    const interval = setInterval(playAllVideos, 2000);
+    // Also force play on any interaction
+    const forcePlay = () => forcePlayAllVideos();
+    document.addEventListener('click', forcePlay);
+    document.addEventListener('touchstart', forcePlay);
+    document.addEventListener('mousemove', forcePlay, { once: true });
+    document.addEventListener('scroll', forcePlay);
     
-    // Also play on user interaction
-    const handleInteraction = () => playAllVideos();
-    document.addEventListener('click', handleInteraction);
-    document.addEventListener('touchstart', handleInteraction);
-    document.addEventListener('scroll', handleInteraction);
+    // Initial play
+    forcePlayAllVideos();
 
     return () => {
       clearInterval(interval);
-      document.removeEventListener('click', handleInteraction);
-      document.removeEventListener('touchstart', handleInteraction);
-      document.removeEventListener('scroll', handleInteraction);
+      document.removeEventListener('click', forcePlay);
+      document.removeEventListener('touchstart', forcePlay);
+      document.removeEventListener('scroll', forcePlay);
     };
   }, []);
 
