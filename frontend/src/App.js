@@ -188,22 +188,6 @@ function App() {
   const handleGalleryHover = () => { galleryPausedRef.current = true; };
   const handleGalleryLeave = () => { galleryPausedRef.current = false; };
 
-  // Keep backdrop videos in sync with main videos continuously
-  useEffect(() => {
-    const syncBackdrops = () => {
-      document.querySelectorAll('.gallery-card').forEach(card => {
-        const mainVideo = card.querySelector('.gallery-video-main');
-        const backdropVideo = card.querySelector('.card-backdrop video');
-        if (mainVideo && backdropVideo && Math.abs(mainVideo.currentTime - backdropVideo.currentTime) > 0.05) {
-          backdropVideo.currentTime = mainVideo.currentTime;
-        }
-      });
-    };
-    
-    const interval = setInterval(syncBackdrops, 100);
-    return () => clearInterval(interval);
-  }, []);
-
   return (
     <BrowserRouter>
       <div className="App" style={themeStyles} data-theme={theme}>
