@@ -7,7 +7,6 @@ function App() {
   const [activeSection, setActiveSection] = useState('intro');
   const [theme, setTheme] = useState('dark');
   const [galleryPaused, setGalleryPaused] = useState(false);
-  const [immersiveVideo, setImmersiveVideo] = useState(null);
 
   // Video playback with tighter sync - using requestAnimationFrame for smoother sync
   useEffect(() => {
