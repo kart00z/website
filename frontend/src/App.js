@@ -286,7 +286,7 @@ function App() {
                     <span className="highlight-tool" data-testid="tool-highlight">tool</span>.
                   </p>
                   <p className="statement fade-in-4">
-                    i create without limits.
+                    <span className="highlight-tool">tools</span> are only useful for people with taste and the vision to push it further.
                   </p>
                 </div>
               </div>
