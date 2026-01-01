@@ -317,6 +317,7 @@ function App() {
                     key={index} 
                     className={`gallery-card gallery-card-${index}`} 
                     data-index={index}
+                    onMouseEnter={handleCardMouseEnter}
                   >
                     <div className="card-main">
                       <video autoPlay loop muted playsInline preload="auto" className="gallery-video-main" src={src} />
