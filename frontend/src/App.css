@@ -448,62 +448,75 @@ body[data-theme="dark"] .App {
 /* ============================================
    IMMERSIVE HOVER EFFECT - Center card only
    ============================================ */
+
+/* Cinematic backdrop - hidden by default */
+.card-backdrop {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 600px;
+  height: 400px;
+  transform: translate(-50%, -40%);
+  z-index: -1;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.5s ease, transform 0.5s ease;
+  overflow: hidden;
+  border-radius: 50%;
+}
+
+.card-backdrop video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: blur(50px) saturate(1.8) brightness(0.6);
+}
+
+.card-backdrop::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at center, 
+    transparent 0%, 
+    transparent 30%,
+    var(--bg-primary) 70%
+  );
+}
+
+/* Center card hover state */
 .gallery-card.pos-2 {
   cursor: pointer;
 }
 
+.gallery-card.pos-2 .card-main {
+  transition: all 0.5s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
 .gallery-card.pos-2:hover .card-main {
-  width: 420px;
-  height: 236px;
-  margin-left: -70px;
-  border-radius: 8px;
-  box-shadow: 0 0 80px rgba(255,255,255,0.15), 0 30px 60px rgba(0,0,0,0.6);
-  z-index: 10;
+  width: 400px;
+  height: 225px;
+  margin-left: -60px;
+  margin-top: 28px;
+  border-radius: 6px;
+  box-shadow: 
+    0 0 100px rgba(255,255,255,0.1),
+    0 0 60px rgba(100,100,255,0.1),
+    0 30px 60px rgba(0,0,0,0.5);
 }
 
 .gallery-card.pos-2:hover .card-reflect {
   opacity: 0;
+  transition: opacity 0.3s ease;
 }
 
-/* Blurred cinematic backdrop behind the hovered card */
-.gallery-card.pos-2::before {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 0;
-  height: 0;
-  background: inherit;
-  transform: translate(-50%, -50%);
-  border-radius: 50%;
-  opacity: 0;
-  transition: all 0.6s cubic-bezier(0.25, 0.1, 0.25, 1);
-  z-index: -1;
-  pointer-events: none;
-}
-
-.gallery-card.pos-2:hover::before {
-  width: 800px;
-  height: 600px;
+.gallery-card.pos-2:hover .card-backdrop {
   opacity: 1;
-  background: radial-gradient(ellipse at center, 
-    rgba(80, 80, 120, 0.4) 0%, 
-    rgba(40, 40, 80, 0.3) 30%,
-    rgba(20, 20, 40, 0.2) 50%,
-    transparent 70%
-  );
-  filter: blur(40px);
+  transform: translate(-50%, -40%) scale(1.1);
 }
 
-/* Pause rotation on gallery hover */
-.gallery-container:hover .gallery-card {
-  animation-play-state: paused;
-}
-
-/* Fade other cards slightly when hovering center */
-.gallery-card.pos-2:hover ~ .gallery-card,
-.gallery-container:has(.gallery-card.pos-2:hover) .gallery-card:not(.pos-2) {
-  opacity: 0.3;
+/* Fade other cards when hovering center */
+.gallery-stage:has(.gallery-card.pos-2:hover) .gallery-card:not(.pos-2) {
+  opacity: 0.15 !important;
   transition: opacity 0.4s ease;
 }
 
