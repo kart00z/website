@@ -186,26 +186,9 @@ function App() {
     "https://customer-assets.emergentagent.com/job_f89c7579-45ce-4797-86a4-864b9c1026f7/artifacts/imquazrs_copy_093AB1A6-6CFB-4EDD-8180-3FF7CF4904D0.MOV"
   ];
 
-  const handleCardHover = (index, videoSrc) => {
-    const card = document.querySelector(`.gallery-card-${index}`);
-    if (card && card.classList.contains('pos-2')) {
-      setGalleryPaused(true);
-      setImmersiveVideo(videoSrc);
-      card.classList.add('immersive-active');
-      document.querySelector('.gallery-container')?.classList.add('gallery-hovered');
-    }
-  };
-
-  const handleCardLeave = (index) => {
-    const card = document.querySelector(`.gallery-card-${index}`);
-    if (card) {
-      card.classList.remove('immersive-active');
-      document.querySelector('.gallery-container')?.classList.remove('gallery-hovered');
-      setImmersiveVideo(null);
-      // Small delay before resuming rotation
-      setTimeout(() => setGalleryPaused(false), 300);
-    }
-  };
+  // Pause gallery on hover
+  const handleGalleryHover = () => setGalleryPaused(true);
+  const handleGalleryLeave = () => setGalleryPaused(false);
 
   return (
     <BrowserRouter>
