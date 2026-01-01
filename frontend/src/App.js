@@ -184,9 +184,21 @@ function App() {
     "/videos/video5.mp4"
   ];
 
-  // Pause gallery on hover
+  // Pause gallery on hover and sync backdrop video
   const handleGalleryHover = () => { galleryPausedRef.current = true; };
   const handleGalleryLeave = () => { galleryPausedRef.current = false; };
+  
+  // Sync backdrop video with main video on hover
+  const handleCardMouseEnter = (e) => {
+    const card = e.currentTarget;
+    if (card.classList.contains('pos-2')) {
+      const mainVideo = card.querySelector('.gallery-video-main');
+      const backdropVideo = card.querySelector('.card-backdrop video');
+      if (mainVideo && backdropVideo) {
+        backdropVideo.currentTime = mainVideo.currentTime;
+      }
+    }
+  };
 
   return (
     <BrowserRouter>
