@@ -6,7 +6,7 @@ function App() {
   const [scrollRotation, setScrollRotation] = useState(0);
   const [activeSection, setActiveSection] = useState('intro');
   const [theme, setTheme] = useState('dark');
-  const [galleryPaused, setGalleryPaused] = useState(false);
+  const galleryPausedRef = React.useRef(false);
 
   // Video playback with tighter sync - using requestAnimationFrame for smoother sync
   useEffect(() => {
