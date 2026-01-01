@@ -298,7 +298,7 @@ function App() {
                     <span className="highlight-tool" data-testid="tool-highlight">tool</span>.
                   </p>
                   <p className="statement fade-in-4">
-                    <span className="highlight-tool">tools</span> are only useful for people with taste and the vision to push it further.
+                    i think <span className="highlight-tool">tools</span> are useful for people with taste and vision.
                   </p>
                 </div>
               </div>
