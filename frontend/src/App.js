@@ -184,21 +184,25 @@ function App() {
     "/videos/video5.mp4"
   ];
 
-  // Pause gallery on hover and sync backdrop video
+  // Pause gallery on hover
   const handleGalleryHover = () => { galleryPausedRef.current = true; };
   const handleGalleryLeave = () => { galleryPausedRef.current = false; };
-  
-  // Sync backdrop video with main video on hover
-  const handleCardMouseEnter = (e) => {
-    const card = e.currentTarget;
-    if (card.classList.contains('pos-2')) {
-      const mainVideo = card.querySelector('.gallery-video-main');
-      const backdropVideo = card.querySelector('.card-backdrop video');
-      if (mainVideo && backdropVideo) {
-        backdropVideo.currentTime = mainVideo.currentTime;
-      }
-    }
-  };
+
+  // Keep backdrop videos in sync with main videos continuously
+  useEffect(() => {
+    const syncBackdrops = () => {
+      document.querySelectorAll('.gallery-card').forEach(card => {
+        const mainVideo = card.querySelector('.gallery-video-main');
+        const backdropVideo = card.querySelector('.card-backdrop video');
+        if (mainVideo && backdropVideo && Math.abs(mainVideo.currentTime - backdropVideo.currentTime) > 0.05) {
+          backdropVideo.currentTime = mainVideo.currentTime;
+        }
+      });
+    };
+    
+    const interval = setInterval(syncBackdrops, 100);
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <BrowserRouter>
