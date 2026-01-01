@@ -185,8 +185,8 @@ function App() {
   ];
 
   // Pause gallery on hover
-  const handleGalleryHover = () => setGalleryPaused(true);
-  const handleGalleryLeave = () => setGalleryPaused(false);
+  const handleGalleryHover = () => { galleryPausedRef.current = true; };
+  const handleGalleryLeave = () => { galleryPausedRef.current = false; };
 
   return (
     <BrowserRouter>
