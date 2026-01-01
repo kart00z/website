@@ -525,8 +525,7 @@ function App() {
                 <div className="vita-item">
                   <h3 className="vita-heading">About</h3>
                   <p className="vita-text">
-                    Computer Science graduate from the University of Victoria specializing in AI/ML development and creative technology.
-                    I bridge technology and creativity through innovative solutions, combining AI-powered workflows with 3D design to push creative boundaries.
+                    My background is in Computer Science, but my passion is in the edit. I specialize in a production-first approach combining traditional videography, VFX, and sound design with GenAI workflows to push the boundaries of creative direction.
                   </p>
                 </div>
 
