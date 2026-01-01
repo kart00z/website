@@ -178,6 +178,36 @@ function App() {
     color: theme === 'dark' ? '#ffffff' : '#000000',
   };
 
+  // Gallery video sources
+  const galleryVideos = [
+    "https://customer-assets.emergentagent.com/job_f89c7579-45ce-4797-86a4-864b9c1026f7/artifacts/luskimt2_copy_3F55AC6B-5FBA-409A-BEA5-D4925190E716.MOV",
+    "https://customer-assets.emergentagent.com/job_f89c7579-45ce-4797-86a4-864b9c1026f7/artifacts/wjml9oab_copy_FE7C6C77-06D3-4BBB-A7F1-05114D95309A.MOV",
+    "https://customer-assets.emergentagent.com/job_f89c7579-45ce-4797-86a4-864b9c1026f7/artifacts/wfu9u7ya_copy_654B0D2E-9F53-480A-A6AA-B05D56963BD9.MOV",
+    "https://customer-assets.emergentagent.com/job_f89c7579-45ce-4797-86a4-864b9c1026f7/artifacts/xxf7gddq_copy_67AB9974-530F-4871-830C-C0108EFD6DEA.mov",
+    "https://customer-assets.emergentagent.com/job_f89c7579-45ce-4797-86a4-864b9c1026f7/artifacts/imquazrs_copy_093AB1A6-6CFB-4EDD-8180-3FF7CF4904D0.MOV"
+  ];
+
+  const handleCardHover = (index, videoSrc) => {
+    const card = document.querySelector(`.gallery-card-${index}`);
+    if (card && card.classList.contains('pos-2')) {
+      setGalleryPaused(true);
+      setImmersiveVideo(videoSrc);
+      card.classList.add('immersive-active');
+      document.querySelector('.gallery-container')?.classList.add('gallery-hovered');
+    }
+  };
+
+  const handleCardLeave = (index) => {
+    const card = document.querySelector(`.gallery-card-${index}`);
+    if (card) {
+      card.classList.remove('immersive-active');
+      document.querySelector('.gallery-container')?.classList.remove('gallery-hovered');
+      setImmersiveVideo(null);
+      // Small delay before resuming rotation
+      setTimeout(() => setGalleryPaused(false), 300);
+    }
+  };
+
   return (
     <BrowserRouter>
       <div className="App" style={themeStyles} data-theme={theme}>
