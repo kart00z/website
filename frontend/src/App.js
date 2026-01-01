@@ -350,7 +350,7 @@ function App() {
                   </div>
                   <div className="portfolio-featured-info">
                     <h3 className="portfolio-featured-title">∞</h3>
-                    <p className="portfolio-featured-subtitle">Runway GEN:48 Aleph Edition</p>
+                    <p className="portfolio-featured-subtitle">People's Choice Winner | Runway GEN:48 Aleph Edition</p>
                     <div className="portfolio-featured-stats">
                       <span className="stat-item">3000+ Submissions</span>
                       <span className="stat-divider">|</span>
@@ -359,8 +359,7 @@ function App() {
                       <span className="stat-item">48-Hour AI Filmmaking Challenge</span>
                     </div>
                     <p className="portfolio-featured-description">
-                      Created using Runway's Aleph generative video technology in just 48 hours. 
-                      This film explores the boundaries of AI-assisted storytelling and visual art.
+                      Created using Runway's video models in 48 hours. I really wanted to show a cohesive narrative while trying to reiterate the cyclical themes of the film.
                     </p>
                   </div>
                 </a>
