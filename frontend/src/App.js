@@ -108,9 +108,14 @@ function App() {
       }
     });
 
-    const interval = setInterval(rotateGallery, 4500);
+    // Only rotate if not paused
+    const interval = setInterval(() => {
+      if (!galleryPaused) {
+        rotateGallery();
+      }
+    }, 4500);
     return () => clearInterval(interval);
-  }, []);
+  }, [galleryPaused]);
 
   useEffect(() => {
     // iOS Safari requires direct style manipulation - CSS variables don't always work
