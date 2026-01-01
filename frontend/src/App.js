@@ -295,15 +295,18 @@ function App() {
             </div>
 
             {/* Right: Video Gallery */}
-            <div className="gallery-container" data-testid="video-gallery">
+            <div 
+              className="gallery-container" 
+              data-testid="video-gallery"
+              onMouseEnter={handleGalleryHover}
+              onMouseLeave={handleGalleryLeave}
+            >
               <div className="gallery-stage">
                 {galleryVideos.map((src, index) => (
                   <div 
                     key={index} 
                     className={`gallery-card gallery-card-${index}`} 
                     data-index={index}
-                    onMouseEnter={() => handleCardHover(index, src)}
-                    onMouseLeave={() => handleCardLeave(index)}
                   >
                     <div className="card-main">
                       <video autoPlay loop muted playsInline preload="auto" className="gallery-video-main" src={src} />
@@ -311,15 +314,12 @@ function App() {
                     <div className="card-reflect">
                       <video autoPlay loop muted playsInline preload="auto" className="gallery-video-reflect" src={src} />
                     </div>
+                    {/* Cinematic blur backdrop for center card */}
+                    <div className="card-backdrop">
+                      <video autoPlay loop muted playsInline preload="auto" src={src} />
+                    </div>
                   </div>
                 ))}
-              </div>
-              
-              {/* Immersive backdrop for hover effect */}
-              <div className={`immersive-backdrop ${immersiveVideo ? 'active' : ''}`}>
-                {immersiveVideo && (
-                  <video autoPlay loop muted playsInline src={immersiveVideo} />
-                )}
               </div>
             </div>
           </div>
