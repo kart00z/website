@@ -75,15 +75,17 @@ function App() {
   }, []);
 
   useEffect(() => {
-    // Smooth one-direction carousel rotation
+    // Smooth one-direction carousel rotation - infinite loop
     const rotateGallery = () => {
+      if (galleryPausedRef.current) return;
+      
       const cards = document.querySelectorAll('.gallery-card');
       if (cards.length === 0) return;
       
       cards.forEach(card => {
-        const currentPos = parseInt(card.dataset.position || card.dataset.index);
+        const currentPos = parseInt(card.dataset.position);
         // Move to next position (circular, one direction)
-        const nextPos = (currentPos + 1) % cards.length;
+        const nextPos = (currentPos + 1) % 5;
         card.dataset.position = nextPos;
         
         // Update classes
@@ -97,7 +99,7 @@ function App() {
       });
     };
 
-    // Initialize positions
+    // Initialize positions on mount
     const cards = document.querySelectorAll('.gallery-card');
     cards.forEach((card, index) => {
       card.dataset.position = index;
@@ -107,12 +109,8 @@ function App() {
       }
     });
 
-    // Only rotate if not paused
-    const interval = setInterval(() => {
-      if (!galleryPaused) {
-        rotateGallery();
-      }
-    }, 4500);
+    // Continuous rotation interval
+    const interval = setInterval(rotateGallery, 4500);
     return () => clearInterval(interval);
   }, [galleryPaused]);
 
