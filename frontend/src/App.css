@@ -1,8 +1,6 @@
-/* existing content is long, so append at end */
+/* previous content remains, appending marquee styles at end */
 
-/* ============================================
-   LOGO MARQUEE - Infinite scroll under gallery
-   ============================================ */
+/* Logo Marquee under video gallery */
 .logo-marquee-section {
   width: 100%;
   overflow: hidden;
@@ -16,7 +14,6 @@
   gap: 3.5rem;
   width: max-content;
   animation: logo-scroll 40s linear infinite;
-  align-items: center;
 }
 
 .logo-marquee:hover {
@@ -29,12 +26,12 @@
 }
 
 .logo-item {
-  height: 48px;
+  height: 42px;
   width: auto;
   object-fit: contain;
-  opacity: 0.75;
+  opacity: 0.7;
   transition: opacity 0.3s ease;
-  filter: brightness(1.05);
+  filter: brightness(1.1);
 }
 
 .logo-item:hover {
@@ -47,7 +44,7 @@
   position: absolute;
   top: 0;
   bottom: 0;
-  width: 100px;
+  width: 60px;
   z-index: 2;
   pointer-events: none;
 }
